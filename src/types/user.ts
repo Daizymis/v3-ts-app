@@ -3,4 +3,6 @@ export interface UserInfo {
   password: string;
   age: number;
   avatar?: string;
+  gender?:string;
+  phone?:string|number
 }

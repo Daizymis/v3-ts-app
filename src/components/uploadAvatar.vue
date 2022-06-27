@@ -1,7 +1,7 @@
 <template>
   <el-upload
     class="avatar-uploader"
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+    action="uploadAttachment"
     :show-file-list="false"
     :on-success="handleAvatarSuccess"
     :before-upload="beforeAvatarUpload"
@@ -31,10 +31,11 @@ export default defineComponent({
     };
 
     const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
-      if (rawFile.type !== "image/jpeg") {
-        ElMessage.error("Avatar picture must be JPG format!");
+      console.log(rawFile)
+      if (rawFile.type !== "image/jpeg" && rawFile.type !== "image/png") {
+        ElMessage.error("Avatar picture must be JPG/png format!");
         return false;
-      } else if (rawFile.size / 1024 / 1024 > 2) {
+      } else if (rawFile.size / 1024 / 1024 > 10) {
         ElMessage.error("Avatar picture size can not exceed 2MB!");
         return false;
       }

@@ -17,7 +17,7 @@
       label-width="80px"
       status-icon
       class="login-form"
-      :style="{ backgroundColor: theme === 'light' ? '#dddddd' : '#ffffff' }"
+      :style="{ backgroundColor: theme === 'light' ? '#efebeb4f' : '#ffffff' }"
     >
       <el-form-item label="用户名" prop="userName">
         <el-input
@@ -45,10 +45,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted, reactive, toRefs } from "vue";
+import { defineComponent, ref, reactive, toRefs } from "vue";
 import { ElLoading, FormInstance } from "element-plus";
-import { initData } from "../types/login";
-import { login } from "../http/api";
+import { initData } from "@/types/login";
+import { login } from "@/http/api";
 import router from "@/router";
 import { useUserStoreWithOut } from "@/store/modules/user";
 import { UserInfo } from "@/types/user";

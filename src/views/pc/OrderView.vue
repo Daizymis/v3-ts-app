@@ -71,8 +71,8 @@
 <script lang="ts">
 import { FormInstance } from "element-plus";
 import { defineComponent, onMounted, reactive, toRefs, ref } from "vue";
-import { orderData, orderInt } from "../types/order";
-import { getOrderList } from "../http/api";
+import { orderData, orderInt } from "@/types/order";
+import { getOrderList } from "@/http/api";
 
 export default defineComponent({
   setup() {

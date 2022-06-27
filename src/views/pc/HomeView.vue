@@ -7,11 +7,11 @@
             <img
               width="30"
               style="transform: translateY(50%)"
-              src="../assets/logo.png"
+              src="../../assets/logo.png"
             />
           </el-col>
           <el-col :span="16"><h3>Manage System</h3></el-col>
-          <el-col :span="4">
+          <el-col :span="4" class="user-nav">
             <el-avatar
               src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
               @click="toPersonalSet"
@@ -28,7 +28,7 @@
             active-text-color="#606b93"
             background-color="#545c64"
             class="el-menu-vertical-demo"
-            default-active="1"
+            :default-active="defaultActive"
             text-color="#fff"
             router
           >
@@ -52,7 +52,7 @@
             <el-menu-item
               v-for="menu in menuList"
               v-bind:key="menu.path"
-              :index="menu.path"
+              :index="menu.name"
             >
               <template #title
                 ><el-icon><component :is="menu.meta.icon" /></el-icon
@@ -71,8 +71,8 @@
 
 <script lang="ts">
 import { useUserStoreWithOut } from "@/store/modules/user";
-import { defineComponent, computed } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent, computed, onBeforeMount,ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   name: "HomeView",
@@ -80,6 +80,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const menuList = router.getRoutes().filter((route) => route.meta.isShow);
+    const defaultActive = ref(menuList[0].name);
     const userStore = useUserStoreWithOut();
     const handleOpen = (menu: any) => {
       router.push(menu.path);
@@ -88,23 +89,31 @@ export default defineComponent({
       userStore.logOut();
       router.push("/");
     };
-    console.log(userStore);
     const userName = computed(() => userStore.userInfo?.name);
     const toPersonalSet = () => {
       router.push("/personalSet");
     };
+    onBeforeMount(()=> {
+      const route = useRoute();
+      defaultActive.value = route.name || '';
+    })
     return {
       menuList,
+      defaultActive,
       handleOpen,
       logOut,
       userStore,
       userName,
       toPersonalSet,
+      
     };
   },
 });
 </script>
 <style lang="scss" scoped>
+@mixin pointer {
+  cursor: pointer;
+}
 .common-layout {
   height: 100%;
 }
@@ -127,8 +136,10 @@ h3 {
   font-size: 10px;
   color: #5dacff;
   span {
-    cursor: pointer;
     color: #e6a23c;
   }
+}
+.user-nav {
+  @include pointer;
 }
 </style>

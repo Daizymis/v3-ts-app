@@ -11,7 +11,7 @@ export const useUserStore = defineStore({
   id: "app-user",
   state: (): UserState => ({
     userInfo: null,
-    token: undefined,
+    token: undefined
   }),
   getters: {
     getUserInfo(): UserInfo | null | string {
@@ -27,8 +27,9 @@ export const useUserStore = defineStore({
       localStorage.setItem("token", "1212121212");
     },
     setUserInfo(info: UserInfo | null): void {
-      this.userInfo = info;
       if (info) {
+        this.userInfo = info;
+        info.avatar = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png';
         localStorage.setItem("user", JSON.stringify(info));
       }
     },

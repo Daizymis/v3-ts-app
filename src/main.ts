@@ -10,6 +10,8 @@ import Mock from "mockjs";
 require("../mock");
 import { setupStore } from "@/store";
 import Particles from "particles.vue3";
+// import common css
+import '@/assets/css/common.scss';
 
 const app = createApp(App);
 setupStore(app);
