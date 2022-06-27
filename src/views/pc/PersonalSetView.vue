@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="home-btn">
-      <el-button :icon="House" circle  @click="toHome"/>
+      <el-button :icon="House" circle @click="toHome" />
     </div>
     <upload-avatar :imageUrl="userInfo.avatar"></upload-avatar>
     <el-divider />
@@ -84,14 +84,14 @@ export default defineComponent({
     const save = () => {
       updateUser(userInfo.value as UserInfo).then((res) => {
         console.log(res);
-        if (res && res?.code === 200) {
+        if (res && res.data?.code === 200) {
           ElMessage.success("res.message");
         }
       });
     };
     const toHome = () => {
-      router.push('/');
-    }
+      router.push("/");
+    };
     return { userInfo, LOCALE, GENDER, cancel, save, House, toHome };
   },
 });

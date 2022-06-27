@@ -11,12 +11,15 @@ require("../mock");
 import { setupStore } from "@/store";
 import Particles from "particles.vue3";
 // import common css
-import '@/assets/css/common.scss';
-
+import "@/assets/css/common.scss";
+import { Tabbar, TabbarItem, Search } from "vant";
 const app = createApp(App);
 setupStore(app);
 app.use(Mock);
 app.use(Particles);
+app.use(Tabbar);
+app.use(TabbarItem);
+app.use(Search);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }

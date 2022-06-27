@@ -1,19 +1,23 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import LoginView from "../views/pc/LoginView.vue";
-import HomeView from "../views/pc/LayoutView.vue";
 import { UserInfo } from "@/types/user";
 import { useUserStoreWithOut } from "@/store/modules/user";
 const isTablet =
   /(?:iPad|PlayBook)/.test(navigator.userAgent) ||
-  (/(?:Android)/.test(navigator.userAgent) && !/(?:Mobile)/.test(navigator.userAgent)) ||
-  (/(?:Firefox)/.test(navigator.userAgent) && /(?:Tablet)/.test(navigator.userAgent));
+  (/(?:Android)/.test(navigator.userAgent) &&
+    !/(?:Mobile)/.test(navigator.userAgent)) ||
+  (/(?:Firefox)/.test(navigator.userAgent) &&
+    /(?:Tablet)/.test(navigator.userAgent));
 
 const folderUrl =
-  /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) && !isTablet == true ? 'mobile' : 'pc';
+  /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) &&
+  !isTablet == true
+    ? "mobile"
+    : "pc";
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    redirect: '/home'
+    path: "/",
+    redirect: "/home",
   },
   {
     path: "/login",
@@ -36,36 +40,36 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import(`@/views/${folderUrl}/HomePageView.vue`),
       },
-      {
-        path: "order",
-        name: "order",
-        meta: {
-          isShow: true,
-          title: "Orders",
-          icon: "List",
-        },
-        component: () => import(`@/views/${folderUrl}/OrderView.vue`),
-      },
-      {
-        path: "order",
-        name: "order",
-        meta: {
-          isShow: true,
-          title: "Orders",
-          icon: "List",
-        },
-        component: () => import(`@/views/${folderUrl}/OrderView.vue`),
-      },
-      {
-        path: "good",
-        name: "good",
-        meta: {
-          isShow: true,
-          title: "Goods",
-          icon: "ShoppingBag",
-        },
-        component: () => import(`@/views/${folderUrl}/GoodsView.vue`),
-      },
+      //   {
+      //     path: "order",
+      //     name: "order",
+      //     meta: {
+      //       isShow: true,
+      //       title: "Orders",
+      //       icon: "List",
+      //     },
+      //     component: () => import(`@/views/${folderUrl}/OrderView.vue`),
+      //   },
+      //   {
+      //     path: "order",
+      //     name: "order",
+      //     meta: {
+      //       isShow: true,
+      //       title: "Orders",
+      //       icon: "List",
+      //     },
+      //     component: () => import(`@/views/${folderUrl}/OrderView.vue`),
+      //   },
+      //   {
+      //     path: "good",
+      //     name: "good",
+      //     meta: {
+      //       isShow: true,
+      //       title: "Goods",
+      //       icon: "ShoppingBag",
+      //     },
+      //     component: () => import(`@/views/${folderUrl}/GoodsView.vue`),
+      //   },
     ],
   },
   {
