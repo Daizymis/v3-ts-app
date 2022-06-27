@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import LoginView from "../views/pc/LoginView.vue";
-import HomeView from "../views/pc/HomeView.vue";
+import HomeView from "../views/pc/LayoutView.vue";
 import { UserInfo } from "@/types/user";
 import { useUserStoreWithOut } from "@/store/modules/user";
 const isTablet =
@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/home",
     name: "home",
-    component: HomeView,
+    component: () => import(`@/views/${folderUrl}/LayoutView.vue`),
     // redirect: '/home/order',
     children: [
       {
@@ -34,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
           title: "home page",
           icon: "List",
         },
-        component: () => import(`@/views/${folderUrl}/indexPageView.vue`),
+        component: () => import(`@/views/${folderUrl}/HomePageView.vue`),
       },
       {
         path: "order",
