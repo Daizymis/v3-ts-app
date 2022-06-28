@@ -1,6 +1,8 @@
 <template>
   <div>
+    <keep-alive :include="includeList">
     <router-view></router-view>
+    </keep-alive>
     <van-tabbar v-model="active">
       <van-tabbar-item name="home" icon="home-o" @click="toLink('home')"
         >home</van-tabbar-item
@@ -16,6 +18,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 const active = ref("home");
 const router = useRouter();
+const includeList = [{path: '/home'}]
 const toLink = (url: string) => {
   router.push(url);
 };

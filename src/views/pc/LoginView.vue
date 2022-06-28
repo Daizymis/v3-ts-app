@@ -6,8 +6,8 @@
     :options="options"
   />
   <div id="theme">
-    <button type="button" id="btnLight" @click="light">Light</button>
-    <button type="button" id="btnDark" @click="dark">Dark</button>
+    <el-button type="info" @click="light">Light</el-button>
+    <el-button type="info" @click="dark">Dark</el-button>
   </div>
   <div class="login-nav">
     <el-form
@@ -33,14 +33,14 @@
           placeholder="请输入"
         />
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit(loginFormRef)"
+      <el-footer> 
+        <el-button type="primary" size="large" plain @click="onSubmit(loginFormRef)"
           >登录</el-button
         >
-        <el-button type="primary" @click="onCancel(loginFormRef)"
+        <el-button type="primary" size="large" plain @click="onCancel(loginFormRef)"
           >清空</el-button
         >
-      </el-form-item>
+      </el-footer>
     </el-form>
   </div>
 </template>

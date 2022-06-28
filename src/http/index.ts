@@ -24,7 +24,7 @@ http.interceptors.response.use(res => {
         ElMessage.error(MSGS[code]);
         return Promise.reject(res.data);
     }
-    return res.data;
+    return res;
 }, err => {
     ElMessage.error(`Oops, this is a error message: ${err}`);
 })

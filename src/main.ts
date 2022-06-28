@@ -12,14 +12,13 @@ import { setupStore } from "@/store";
 import Particles from "particles.vue3";
 // import common css
 import "@/assets/css/common.scss";
-import { Tabbar, TabbarItem, Search } from "vant";
+import{importVant} from '@/utils/plugin';
+
 const app = createApp(App);
+importVant(app);
 setupStore(app);
 app.use(Mock);
 app.use(Particles);
-app.use(Tabbar);
-app.use(TabbarItem);
-app.use(Search);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }

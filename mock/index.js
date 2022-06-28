@@ -13,7 +13,7 @@ files.keys().forEach(key => {
     configArray = configArray.concat(files(key).default);
 
 })
-
+console.log(configArray);
 configArray.forEach(item => {
     for(let [path, target] of Object.entries(item)) {
         let protocol = path.split('|');
