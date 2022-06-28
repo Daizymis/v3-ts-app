@@ -5,8 +5,8 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    FieldSelect: typeof import('./src/components/mobile/field-select/index.vue')['default']
-    FuzzySearch: typeof import('./src/components/mobile/fuzzy-search/index.vue')['default']
+    FieldSelect: typeof import('./src/components/mobile/field-select/fieldSelect.vue')['default']
+    FuzzySearch: typeof import('./src/components/mobile/fuzzy-search/fuzzySearch.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

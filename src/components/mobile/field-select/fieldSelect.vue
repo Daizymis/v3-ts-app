@@ -44,7 +44,7 @@ const props = withDefaults(defineProps<Props>(),{
           return str;
         }
       }
-    },
+    }
     /**
      * 确认 将值传入field
      * @param value

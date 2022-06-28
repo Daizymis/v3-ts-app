@@ -6,7 +6,7 @@
 <template>
   <div class="fuzzy-search">
     <van-popup
-      v-model="showPicker"
+      v-model:showPicker="showPicker"
       position="bottom"
       :close-on-click-overlay="false"
       @click-overlay="close"
@@ -38,7 +38,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, nextTick, toRefs, ref, watch } from "vue";
-import {getIndexWithKey} from '@/utils/index'
+import { getIndexWithKey } from "@/utils/index";
 // interface Props {
 //   searchValue: string;
 //   searchLabel:string;
@@ -86,6 +86,7 @@ export default defineComponent({
   setup(props, { emit }) {
     let showOptions = ref([] as any[]);
     let refPicker = ref({});
+
     //模糊搜索时需同步更新下拉列表
     watch(
       () => props.options,
@@ -126,7 +127,7 @@ export default defineComponent({
         );
       }
       updateIndex();
-      emit("onFilter", showOptions);
+      emit("onFilter", showOptions.value);
     };
     /**
      * 选择器展示值
@@ -142,7 +143,7 @@ export default defineComponent({
           return item[props.searchLabel] ? item[props.searchLabel] : item.id;
         } else {
           let str = "";
-          props.searchLabel.forEach((i) => {
+          props.searchLabel.forEach((i: any) => {
             str = str.concat(item[i] + " ");
           });
           return str;
@@ -153,7 +154,7 @@ export default defineComponent({
      * 确认回调
      * @param value
      */
-    const onConfirm = (value:any) => {
+    const onConfirm = (value: any) => {
       if (value) {
         if (props.searchValue === "item") {
           currentChoose = value;
@@ -170,7 +171,7 @@ export default defineComponent({
       emit("update:showPicker", false);
       emit("close");
     };
-    const onChange = (picker:any, value:any) => {
+    const onChange = (picker: any, value: any) => {
       if (value) {
         if (props.searchValue === "item") {
           currentChoose = value;
@@ -189,7 +190,7 @@ export default defineComponent({
           props.searchValue === "item"
         );
         if (index.value > 0) {
-          refPicker?.value?.setIndexes([index]);
+          (refPicker?.value as any)?.setIndexes([index]);
         }
       });
     };
@@ -231,7 +232,7 @@ export default defineComponent({
   .search-text {
   }
 }
-.picker-box /deep/.van-picker-column__item {
+.picker-box >>> van-picker-column__item {
   word-break: break-all;
 }
 </style>
