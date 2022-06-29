@@ -6,39 +6,48 @@
 <template>
   <div class="fuzzy-search">
     <van-popup
-      v-model:showPicker="showPicker"
       position="bottom"
+      v-model:show="show"
       :close-on-click-overlay="false"
       @click-overlay="close"
     >
-      <van-search
-        v-if="remote || filterable"
-        v-model="searchText"
-        placeholder="搜索"
-        @input="onSearch"
-      >
-      </van-search>
-      <van-picker
-        ref="refPicker"
-        show-toolbar
-        :columns="showOptions"
-        style="margin-top: 0.2rem"
-        :default-index="index"
-        class="picker-box"
-        @confirm="onConfirm"
-        @cancel="close"
-        @change="onChange"
-      >
-        <template #option="item">
-          {{ getShowData(item) }}
-        </template>
-      </van-picker>
+        <van-search
+          v-if="remote || filterable"
+          v-model="searchText"
+          placeholder="搜索"
+          @input="onSearch"
+        >
+        </van-search>
+        <van-picker
+          ref="refPicker"
+          show-toolbar
+          :columns="showOptions"
+          style="margin-top: 0.2rem"
+          :default-index="index"
+          class="picker-box"
+          @confirm="onConfirm"
+          @cancel="close"
+          @change="onChange"
+        >
+          <template #option="item">
+            {{ getShowData(item) }}
+          </template>
+        </van-picker>
     </van-popup>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, nextTick, toRefs, ref, watch } from "vue";
+import {
+  defineComponent,
+  onMounted,
+  nextTick,
+  toRefs,
+  ref,
+  watch,
+  computed,
+} from "vue";
 import { getIndexWithKey } from "@/utils/index";
+import { PickerInstance } from "vant";
 // interface Props {
 //   searchValue: string;
 //   searchLabel:string;
@@ -85,8 +94,16 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     let showOptions = ref([] as any[]);
-    let refPicker = ref({});
-
+    let refPicker = ref<PickerInstance>();
+    const show = computed({
+      get() {
+        console.log(props)
+        return props.showPicker;
+      },
+      set(visible: boolean) {
+        emit("update:showPicker", visible);
+      },
+    });
     //模糊搜索时需同步更新下拉列表
     watch(
       () => props.options,
@@ -107,6 +124,7 @@ export default defineComponent({
     let index = ref(0);
     let searchText = ref("");
     onMounted(() => {
+      console.log(props)
       showOptions.value = props.options.slice(0);
     });
     //搜索时
@@ -190,7 +208,7 @@ export default defineComponent({
           props.searchValue === "item"
         );
         if (index.value > 0) {
-          (refPicker?.value as any)?.setIndexes([index]);
+          refPicker?.value?.setIndexes([index.value]);
         }
       });
     };
@@ -200,6 +218,7 @@ export default defineComponent({
       currentChoose,
       showOptions,
       index,
+      show,
       onSearch,
       onFilter,
       getShowData,

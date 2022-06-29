@@ -25,18 +25,19 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginView,
   },
   {
-    path: "/home",
-    name: "home",
+    path: "",
+    name: "",
     component: () => import(`@/views/${folderUrl}/LayoutView.vue`),
     // redirect: '/home/order',
     children: [
       {
-        path: "",
+        path: "/home",
         name: "home",
         meta: {
           isShow: true,
           title: "home page",
           icon: "List",
+          footer:'home'
         },
         component: () => import(`@/views/${folderUrl}/HomePageView.vue`),
       },
@@ -70,6 +71,17 @@ const routes: Array<RouteRecordRaw> = [
       //     },
       //     component: () => import(`@/views/${folderUrl}/GoodsView.vue`),
       //   },
+      {
+        path: "/category",
+        name: "category",
+        meta: {
+          isShow: true,
+          title: "category",
+          icon: "List",
+          footer:'category'
+        },
+        component: () => import(`@/views/${folderUrl}/CategoryView.vue`),
+      },
     ],
   },
   {

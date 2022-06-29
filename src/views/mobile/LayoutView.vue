@@ -1,25 +1,34 @@
 <template>
   <div>
-    <keep-alive :include="includeList">
-    <router-view></router-view>
-    </keep-alive>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
     <van-tabbar v-model="active">
-      <van-tabbar-item name="home" icon="home-o" @click="toLink('home')"
+      <van-tabbar-item name="home" icon="wap-home" @click="toLink('home')"
         >home</van-tabbar-item
       >
-      <van-tabbar-item name="category" icon="label-o">category</van-tabbar-item>
-      <van-tabbar-item name="message" icon="chat-o">message</van-tabbar-item>
-      <van-tabbar-item name="personal" icon="user-o">personal</van-tabbar-item>
+      <van-tabbar-item name="category" icon="bars" @click="toLink('category')"
+        >category</van-tabbar-item
+      >
+      <van-tabbar-item name="message" icon="chat">message</van-tabbar-item>
+      <van-tabbar-item name="personal" icon="manager">personal</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { onBeforeMount, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 const active = ref("home");
 const router = useRouter();
-const includeList = [{path: '/home'}]
+const route = useRoute();
+const includeList = [{ path: "/home" }];
 const toLink = (url: string) => {
   router.push(url);
 };
+onBeforeMount(() => {
+  console.log(active.value);
+  active.value = route.meta.footer || 'home';
+});
 </script>
