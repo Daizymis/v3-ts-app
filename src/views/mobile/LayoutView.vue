@@ -12,7 +12,13 @@
       <van-tabbar-item name="category" icon="bars" @click="toLink('category')"
         >category</van-tabbar-item
       >
-      <van-tabbar-item name="message" icon="chat">message</van-tabbar-item>
+      <van-tabbar-item
+        name="message"
+        icon="chat"
+        badge="35"
+        @click="toLink('message')"
+        >message</van-tabbar-item
+      >
       <van-tabbar-item name="personal" icon="manager">personal</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -29,6 +35,6 @@ const toLink = (url: string) => {
 };
 onBeforeMount(() => {
   console.log(active.value);
-  active.value = route.meta.footer || 'home';
+  active.value = route.meta.footer || "home";
 });
 </script>

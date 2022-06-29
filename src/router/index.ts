@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
           isShow: true,
           title: "home page",
           icon: "List",
-          footer:'home'
+          footer: "home",
         },
         component: () => import(`@/views/${folderUrl}/HomePageView.vue`),
       },
@@ -78,9 +78,20 @@ const routes: Array<RouteRecordRaw> = [
           isShow: true,
           title: "category",
           icon: "List",
-          footer:'category'
+          footer: "category",
         },
         component: () => import(`@/views/${folderUrl}/CategoryView.vue`),
+      },
+      {
+        path: "/message",
+        name: "message",
+        meta: {
+          isShow: true,
+          title: "message",
+          icon: "List",
+          footer: "message",
+        },
+        component: () => import(`@/views/${folderUrl}/MessageView.vue`),
       },
     ],
   },
