@@ -4,7 +4,7 @@
 * @Desc: 模糊搜索
 -->
 <template>
-  <div class="fuzzy-search">
+  <div class="selector">
     <van-popup
       position="bottom"
       v-model:show="show"
@@ -14,7 +14,7 @@
         <van-search
           v-if="remote || filterable"
           v-model="searchText"
-          placeholder="搜索"
+          :placeholder="placeholder"
           @input="onSearch"
         >
         </van-search>
@@ -70,6 +70,10 @@ export default defineComponent({
       type: [String, Array],
       default: "value",
     },
+    placeholder: {
+      type: String,
+      default: '搜索'
+    },
     showPicker: {
       type: Boolean,
       default: false,
@@ -97,7 +101,6 @@ export default defineComponent({
     let refPicker = ref<PickerInstance>();
     const show = computed({
       get() {
-        console.log(props)
         return props.showPicker;
       },
       set(visible: boolean) {
@@ -192,9 +195,9 @@ export default defineComponent({
     const onChange = (picker: any, value: any) => {
       if (value) {
         if (props.searchValue === "item") {
-          currentChoose = value;
+          currentChoose = picker;
         } else {
-          currentChoose = value[props.searchValue];
+          currentChoose = picker[props.searchValue];
         }
         emit("change", currentChoose);
       }
@@ -231,7 +234,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.fuzzy-search {
+.selector{
   .placehodler-text {
     color: #999999;
   }

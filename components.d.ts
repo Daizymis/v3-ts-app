@@ -14,13 +14,12 @@ declare module '@vue/runtime-core' {
     UploadAvatar: typeof import('./src/components/uploadAvatar.vue')['default']
     UploadFile: typeof import('./src/components/uploadFile.vue')['default']
     VanButton: typeof import('vant/es')['Button']
-    VanCard: typeof import('vant/es')['Card']
     VanCol: typeof import('vant/es')['Col']
-    VanGrid: typeof import('vant/es')['Grid']
-    VanGridItem: typeof import('vant/es')['GridItem']
+    VanField: typeof import('vant/es')['Field']
     VanIcon: typeof import('vant/es')['Icon']
     VanImage: typeof import('vant/es')['Image']
     VanPicker: typeof import('vant/es')['Picker']
+    VanPopover: typeof import('vant/es')['Popover']
     VanPopup: typeof import('vant/es')['Popup']
     VanRow: typeof import('vant/es')['Row']
     VanSearch: typeof import('vant/es')['Search']
@@ -33,7 +32,6 @@ declare module '@vue/runtime-core' {
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTabs: typeof import('vant/es')['Tabs']
     VanTag: typeof import('vant/es')['Tag']
-    VanTreeSelect: typeof import('vant/es')['TreeSelect']
   }
 }
 

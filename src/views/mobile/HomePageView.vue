@@ -6,14 +6,29 @@
     @focus="showPicker = true"
     sticky
   />
-  <van-tabs v-model:active="activeTab" swipeable sticky color="#606b93">
+  <!-- 选择器引用 -->
+  <!-- <field-select
+    s-label="name"
+    s-value="name"
+    :param="queryData.queryParam"
+    :options="queryData.options"
+    placeholder="input keywords"
+    remote
+    @change="changeQueryParam"
+    @search="searchKeyWords"
+    @confirm="confirmKeyWords"
+  ></field-select> -->
+  <van-tabs v-model:active="dataList.activeTab" swipeable sticky color="#606b93">
     <van-tab
       v-for="item in dataList.tabBarList"
       :key="item.id"
       :title="item.title"
       :name="item.name"
     >
-      <good-list v-loading="(queryData.goods || []).length === 0" :goods="queryData.goods"></good-list>
+      <good-list
+        v-loading="(queryData.goods || []).length === 0"
+        :goods="queryData.goods"
+      ></good-list>
     </van-tab>
   </van-tabs>
   <teleport to="body">
@@ -26,7 +41,7 @@
       remote
       @change="changeQueryParam"
       @search="searchKeyWords"
-      @confirm="onfirmKeyWords"
+      @confirm="confirmKeyWords"
     ></fuzzy-search>
   </teleport>
 </template>
@@ -54,15 +69,17 @@ onBeforeMount(() => {
   });
   getGoodList(queryData.queryParam).then((res) => {
     queryData.goods = res.data.data || [];
-    console.log(queryData.goods);
   });
 });
 const changeQueryParam = (query: any) => {
-  console.log(query);
+  console.log(`get change value ${query}`);
 };
-const searchKeyWords = (query: any) => {
-  getCategoryList().then((res) => {
+const searchKeyWords = (query: string) => {
+  getCategoryList(query).then((res) => {
     queryData.options = res.data.data;
   });
+};
+const confirmKeyWords = (res: any) => {
+  queryData.queryParam = res;
 };
 </script>

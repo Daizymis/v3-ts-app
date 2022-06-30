@@ -8,4 +8,4 @@ export const getOrderList = (data:selectData) => http({url: '/getOrderList', met
 export const getGoodList = (data:any) => http({url: '/goods/getGoodList', method: "get", data});
 export const updateUser = (data:UserInfo) => http({url: '/updateUser', method:'post',data})
 export const getTabBarList = () => http({url: '/goods/getTabBarList', method: 'get'})
-export const getCategoryList = () => http({url: '/goods/getCategoryList', method:'get'})
+export const getCategoryList = (data:string) => http({url: '/goods/getCategoryList', method:'get',data})

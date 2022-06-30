@@ -1,7 +1,7 @@
 <template>
   <div class="good-l">
     <van-row :gutter="20">
-      <van-col :span="12" v-for="good in goods" :key="good.id" class="g-c">
+      <van-col :span="12" v-for="good in goods" :key="good.id" class="g-c" @click="toDetail(good)">
         <div>
           <van-image class="g-img" :src="good.img" />
           <div class="g-t">
@@ -22,15 +22,22 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { withDefaults, defineProps, ref, toRefs } from "vue";
+import { withDefaults, defineProps, defineEmits, toRefs } from "vue";
 import { good } from "@/types/good";
 interface Props {
   goods: good[];
 }
+interface Emits {
+    (e: 'toDetail', good: good): void;
+  }
 const props = withDefaults(defineProps<Props>(), {
   goods: () => [],
 });
+const emit = defineEmits<Emits>();
 let { goods } = toRefs(props);
+const toDetail = (good:good)=> {
+  emit('toDetail', good);
+}
 </script>
 <style lang="scss" scoped>
 .good-l {

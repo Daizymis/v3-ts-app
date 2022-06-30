@@ -5,7 +5,7 @@
     </div>
   </van-sticky>
   <van-swipe-cell>
-    <div>
+    <div class="flex-center">
       <van-image
         round
         width="1.2rem"
