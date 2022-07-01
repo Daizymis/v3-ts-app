@@ -140,4 +140,12 @@ h3 {
 .user-nav {
   @include pointer;
 }
+@media (-webkit-min-device-pixel-ratio: 1.5){
+  .name-nav {
+  width: 100px;
+  span {
+    color: red;
+  }
+}
+}
 </style>
