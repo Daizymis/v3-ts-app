@@ -65,7 +65,7 @@ const showPicker = ref(false);
 onBeforeMount(() => {
   getTabBarList().then((res) => {
     dataList.tabBarList = res.data.data;
-    dataList.activeTab = res.data.data[0];
+    dataList.activeTab = res.data.data[0].name;
   });
   getGoodList(queryData.queryParam).then((res) => {
     queryData.goods = res.data.data || [];

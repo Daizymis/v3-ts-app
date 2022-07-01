@@ -111,9 +111,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@mixin pointer {
-  cursor: pointer;
-}
+@import "../../assets/css/common.scss";
 .common-layout {
   height: 100%;
 }
