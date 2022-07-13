@@ -19,13 +19,25 @@
         @click="toLink('message')"
         >message</van-tabbar-item
       >
-      <van-tabbar-item name="personal" icon="manager">personal</van-tabbar-item>
+      <van-tabbar-item name="shopCart" icon="cart" @click="toLink('shopCart')"
+        >shopCart</van-tabbar-item
+      >
+      <van-tabbar-item
+        name="personal"
+        icon="manager"
+        @click="toLink('personalSet')"
+        >personal</van-tabbar-item
+      >
     </van-tabbar>
   </div>
 </template>
 <script lang="ts" setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import defineOptions from "unplugin-vue-define-options";
+defineOptions({
+  name: "Layout",
+});
 const active = ref("home");
 const router = useRouter();
 const route = useRoute();

@@ -71,11 +71,11 @@
 
 <script lang="ts">
 import { useUserStoreWithOut } from "@/store/modules/user";
-import { defineComponent, computed, onBeforeMount,ref } from "vue";
+import { defineComponent, computed, onBeforeMount, ref, onMounted, getCurrentInstance } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
-  name: "HomeView",
+  name: "LayoutView",
   components: {},
   setup() {
     const router = useRouter();
@@ -93,9 +93,12 @@ export default defineComponent({
     const toPersonalSet = () => {
       router.push("/personalSet");
     };
-    onBeforeMount(()=> {
+    onBeforeMount(() => {
       const route = useRoute();
-      defaultActive.value = route.name || '';
+      defaultActive.value = route.name || "";
+    });
+    onMounted(() => {
+      const instance = getCurrentInstance();
     })
     return {
       menuList,
@@ -105,7 +108,6 @@ export default defineComponent({
       userStore,
       userName,
       toPersonalSet,
-      
     };
   },
 });
@@ -140,12 +142,12 @@ h3 {
 .user-nav {
   @include pointer;
 }
-@media (-webkit-min-device-pixel-ratio: 1.5){
+@media (-webkit-min-device-pixel-ratio: 1.5) {
   .name-nav {
-  width: 100px;
-  span {
-    color: red;
+    width: 100px;
+    span {
+      color: red;
+    }
   }
-}
 }
 </style>

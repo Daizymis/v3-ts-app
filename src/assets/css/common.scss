@@ -8,4 +8,10 @@
     align-items: center;
 }
 
-$white-color:#ffffff
+$white-color:#ffffff;
+
+@media screen and (max-width:750px) {
+    
+}
+@media (-webkit-min-device-pixel-ratio: 2){}
+@media (-webkit-min-device-pixel-ratio: 3){}

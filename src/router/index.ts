@@ -93,16 +93,27 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import(`@/views/${folderUrl}/MessageView.vue`),
       },
+      {
+        path: "/personalSet",
+        name: "personalSet",
+        component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
+        meta: {
+          isShow: true,
+          title: "personalSet",
+          icon: "personal",
+          footer: "personal",
+        },
+      }
     ],
   },
-  {
-    path: "/personalSet",
-    name: "personalSet",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
-  },
+  // {
+  //   path: "/personalSet",
+  //   name: "personalSet",
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
+  // },
 ];
 
 const router = createRouter({
