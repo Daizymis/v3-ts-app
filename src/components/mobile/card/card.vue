@@ -2,13 +2,7 @@
   <div class="card flex">
     <div class="img-nav">
       <slot name="thumb">
-        <van-image
-          width="1.6rem"
-          height="1.8rem"
-          fit="cover"
-          position="center"
-          :src="thumbLink"
-        />
+        <van-image fit="cover" position="center" :src="thumbLink" />
       </slot>
       <slot name="tag">
         <div class="img-tag">
@@ -86,26 +80,30 @@ defineExpose({ ...props });
 <style lang="scss" scoped>
 .card {
   .img-nav {
-    height: 1.8rem;
-    width: 1.6rem;
+    height: 180px;
+    width: 160px;
     background: #eeeeee;
-    margin: 0.1rem;
-    border-radius: 0.2rem;
-    :deep .van-image .van-image__img {
-      border-radius: 0.2rem;
+    margin: 10px;
+    border-radius: 20px;
+    :deep .van-image {
+      height: 100%;
+      width: 100%;
+      .van-image__img {
+        border-radius: 20px;
+      }
     }
+    position: relative;
   }
   .img-tag {
     position: absolute;
-    top: 0.27rem;
-    left: 0.1rem;
+    top: -1px;
   }
   .content-nav {
-    padding: 0.1rem 0.2rem;
-    width: calc(100% - 2.2rem);
+    padding: 10px 20px;
+    width: calc(100% - 230px);
   }
   .title {
-    font-size: 0.28rem;
+    font-size: 28px;
     font-weight: bold;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -114,45 +112,46 @@ defineExpose({ ...props });
   }
   .currency {
     @extend .title;
-    font-size: 0.22rem;
+    font-size: 22px;
   }
   .price {
     @extend .title;
   }
   .left {
     width: 70%;
-    font-size: 0.28rem;
+    font-size: 28px;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-break: break-all;
     overflow: hidden;
-    margin-right: 0.1rem;
+    margin-right: 10px;
     flex: 1 1 100%;
     > div {
-      line-height: 0.3rem;
+      line-height: 30px;
       text-align: left;
-      margin: 0.1rem 0;
+      margin: 10px 0;
     }
     .desc {
       color: #cccccc;
       white-space: pre-wrap;
+      word-break: break-word;
     }
     .tags:nth-child(2n-1) {
-      margin-right: 0.1rem;
+      margin-right: 10px;
     }
   }
   .right {
     flex: 1 1 50%;
     text-align: right;
-    font-size: 0.28rem;
+    font-size: 28px;
     > div {
-      line-height: 0.3rem;
-      margin: 0.1rem 0;
+      line-height: 30px;
+      margin: 10px 0;
     }
     .num {
       color: #cccccc;
-      font-size: 0.24rem;
-      line-height: 0.3rem;
+      font-size: 24px;
+      line-height: 24px;
     }
   }
 }

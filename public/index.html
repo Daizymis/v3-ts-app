@@ -16,6 +16,18 @@
     <!-- built files will be auto injected -->
   </body>
   <script type="text/javascript">
+    // window.addEventListener('resize', resizeHandler);
+    // resizeHandler = (e) => {
+    //     const resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    //     const activeElement = document.activeElement;
+    //     if (resizeHeight < this.originHeight) {
+    //         // 键盘弹起后逻辑
+    //         if (activeElement && (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA")) {
+    //         }
+    //     } else {
+    //         // 键盘收起后逻辑
+    //     }
+    // }
     const isTablet =
       /(?:iPad|PlayBook)/.test(navigator.userAgent) ||
       (/(?:Android)/.test(navigator.userAgent) && !/(?:Mobile)/.test(navigator.userAgent)) ||
@@ -29,7 +41,7 @@
       (function(doc, win) {
         var docEl = doc.documentElement,
           resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-          recalc = function() {
+          resizeHandler = function() {
             var clientWidth = docEl.clientWidth,
               width = docEl.dataset.width || 750;
             if (!clientWidth || clientWidth > width) {
@@ -42,8 +54,8 @@
             }
           };
         if (!win.addEventListener) return;
-        recalc();
-        win.addEventListener(resizeEvt, recalc, false);
+        resizeHandler();
+        win.addEventListener(resizeEvt, resizeHandler, false);
       })(document, window);
       console.log('移动端');
     }

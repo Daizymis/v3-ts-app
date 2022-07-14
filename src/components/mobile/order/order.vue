@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <van-cell is-link>
+  <div class="order">
+    <van-cell>
       <!-- 使用 title 插槽来自定义标题 -->
       <template #title>
-        <span class="custom-title">{{order.shopName}}</span>
+        <slot name="icon">
+          <van-icon name="shop-o" />
+        </slot>
+        <span class="custom-title">{{ order.shopName }}</span>
+        <van-icon name="arrow" />
+      </template>
+      <template #value>
+        <span class="danger-font">{{ order.status }}</span>
       </template>
     </van-cell>
     <card
@@ -18,6 +25,7 @@
     >
     </card>
     <div></div>
+    <slot name="footer"></slot>
   </div>
 </template>
 <script lang="ts">
@@ -55,7 +63,14 @@ interface Props {
   order: orderInt;
 }
 const props = withDefaults(defineProps<Props>(), {
-  order: ()=> ({} as orderInt),
+  order: () => ({} as orderInt),
 });
 defineExpose({ ...props });
 </script>
+<style lang="scss" scoped>
+.order {
+  :deep .van-cell__title {
+    text-align: left;
+  }
+}
+</style>

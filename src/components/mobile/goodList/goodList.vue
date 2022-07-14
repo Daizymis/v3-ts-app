@@ -59,6 +59,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 let showGoods = ref<any>([]);
+const height = ref("");
 watch(
   () => props.goods,
   (val) => {
@@ -66,10 +67,10 @@ watch(
     nextTick(() => {
       let el = document.getElementsByClassName("g-c")[0];
       data.itemH = el.clientHeight;
-      let total = document.getElementsByClassName('good-l')[0];
-      
+      let total = document.getElementsByClassName("good-l")[0];
+
       data.scrollH = total.scrollHeight;
-      let nav = document.getElementsByClassName('g-r')[0];
+      let nav = document.getElementsByClassName("g-r")[0];
       data.divH = nav.offsetHeight;
       console.log(data);
     });

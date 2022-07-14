@@ -8,14 +8,40 @@
         src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
       />
     </div>
-    <van-notice-bar scrollable text="商品打折啦，只要9块8，只要9块8，快去下单叭" />
-    <van-cell title="我的订单" is-link value="查看全部" class="m-o" :border="false" @click="toOrders"/>
+    <van-notice-bar
+      scrollable
+      text="商品打折啦，只要9块8，只要9块8，快去下单叭"
+    />
+    <van-cell
+      title="我的订单"
+      is-link
+      value="查看全部"
+      class="m-o"
+      :border="false"
+      @click="toOrders"
+    />
     <van-grid :column-num="5" :border="false">
-      <van-grid-item icon="sign" text="待付款" :badge="badge.share || null"/>
-      <van-grid-item icon="share-o" text="待分享" :badge="badge.share|| null" />
-      <van-grid-item icon="clock-o" text="待发货" :badge="badge.share|| null" />
-      <van-grid-item icon="cart-circle-o" text="待收货" :badge="badge.share|| null" />
-      <van-grid-item icon="smile-o" text="评价" :badge="badge.evaluation|| null" />
+      <van-grid-item icon="sign" text="待付款" :badge="badge.share || null" />
+      <van-grid-item
+        icon="share-o"
+        text="待分享"
+        :badge="badge.share || null"
+      />
+      <van-grid-item
+        icon="clock-o"
+        text="待发货"
+        :badge="badge.share || null"
+      />
+      <van-grid-item
+        icon="cart-circle-o"
+        text="待收货"
+        :badge="badge.share || null"
+      />
+      <van-grid-item
+        icon="smile-o"
+        text="评价"
+        :badge="badge.evaluation || null"
+      />
     </van-grid>
   </div>
   <van-share-sheet
@@ -48,22 +74,14 @@ const badge = reactive({
   evaluation: 3,
 });
 const router = useRouter();
-const toOrders =() =>{
-  router.push('orders');
-}
+const toOrders = () => {
+  router.push("orders");
+};
 </script>
 <style lang="scss" scoped>
 .m-o {
-  .van-cell__title {
+  :deep .van-cell__title {
     text-align: left;
-    font-size: 0.28rem;
-    line-height: 0.28rem;
   }
 }
-:deep .m-o .van-cell__title {
-  text-align: left;
-  font-size: 0.28rem;
-  line-height: 0.28rem;
-}
 </style>
-

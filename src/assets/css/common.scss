@@ -14,7 +14,9 @@
     display: flex;
     justify-content: space-between;
 }
-
+.danger-font {
+    color: red;
+}
 $white-color:#ffffff;
 
 @media screen and (max-width:750px) {

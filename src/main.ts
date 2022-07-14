@@ -12,7 +12,8 @@ import { setupStore } from "@/store";
 import Particles from "particles.vue3";
 // import common css
 import "@/assets/css/common.scss";
-import{importVant} from '@/utils/plugin';
+import { importVant } from "@/utils/plugin";
+import "amfe-flexible";
 
 const app = createApp(App);
 importVant(app);
