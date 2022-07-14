@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     GoodList: typeof import('./src/components/mobile/goodList/goodList.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MyLoading: typeof import('./src/components/mobile/loading/myLoading.vue')['default']
+    Order: typeof import('./src/components/mobile/order/order.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UploadAvatar: typeof import('./src/components/uploadAvatar.vue')['default']

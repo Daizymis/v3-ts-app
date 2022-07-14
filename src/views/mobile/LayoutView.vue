@@ -34,10 +34,6 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import defineOptions from "unplugin-vue-define-options";
-defineOptions({
-  name: "Layout",
-});
 const active = ref("home");
 const router = useRouter();
 const route = useRoute();

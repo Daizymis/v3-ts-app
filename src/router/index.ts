@@ -114,6 +114,11 @@ const routes: Array<RouteRecordRaw> = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
   // },
+  {
+    path: "/orders",
+    name: "orders",
+    component: () => import(`@/views/${folderUrl}/OrdersView.vue`),
+  },
 ];
 
 const router = createRouter({

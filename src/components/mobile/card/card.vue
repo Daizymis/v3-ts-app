@@ -12,8 +12,7 @@
       </slot>
       <slot name="tag">
         <div class="img-tag">
-          <van-tag color="red"
-              >{{tag}}</van-tag>
+          <van-tag color="red">{{ tag }}</van-tag>
         </div>
       </slot>
     </div>
@@ -62,7 +61,8 @@ export default {
 import { number } from "echarts";
 import { makeStringProp, numericProp } from "@/utils/props";
 import { useSlots, defineProps, withDefaults, defineExpose } from "vue";
-interface CardProps {
+export interface CardProps {
+  id?: string | number;
   tag?: string;
   num?: number;
   desc?: string;
