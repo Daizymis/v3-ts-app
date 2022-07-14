@@ -9,7 +9,7 @@
       />
     </div>
     <van-notice-bar scrollable text="商品打折啦，只要9块8，只要9块8，快去下单叭" />
-    <van-cell title="我的订单" is-link value="查看全部" class="m-o" :border="false" />
+    <van-cell title="我的订单" is-link value="查看全部" class="m-o" :border="false" @click="toOrders"/>
     <van-grid :column-num="5" :border="false">
       <van-grid-item icon="sign" text="待付款" :badge="badge.share || null"/>
       <van-grid-item icon="share-o" text="待分享" :badge="badge.share|| null" />
@@ -26,6 +26,7 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 const showShare = ref(false);
 const options = [
   [
@@ -46,6 +47,10 @@ const badge = reactive({
   share: 0,
   evaluation: 3,
 });
+const router = useRouter();
+const toOrders =() =>{
+  router.push('orders');
+}
 </script>
 <style lang="scss" scoped>
 .m-o {
@@ -55,7 +60,7 @@ const badge = reactive({
     line-height: 0.28rem;
   }
 }
-::v-deep .m-o .van-cell__title {
+:deep .m-o .van-cell__title {
   text-align: left;
   font-size: 0.28rem;
   line-height: 0.28rem;

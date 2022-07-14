@@ -5,6 +5,7 @@
     placeholder="please input keywords"
     @focus="showPicker = true"
     sticky
+    readonly
   />
   <!-- 选择器引用 -->
   <!-- <field-select
@@ -50,8 +51,6 @@ import { getTabBarList, getCategoryList, getGoodList } from "@/http/api";
 import { homeData } from "@/types/home";
 import { reactive } from "@vue/reactivity";
 import { onBeforeMount, onMounted, ref } from "vue";
-import fieldSelect from "@/components/mobile/field-select/fieldSelect";
-import fuzzySearch from "@/components/mobile/fuzzy-search/fuzzySearch";
 import { good } from "@/types/good";
 interface selectInt {
   queryParam: string;
