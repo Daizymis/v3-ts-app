@@ -103,7 +103,18 @@ const routes: Array<RouteRecordRaw> = [
           icon: "personal",
           footer: "personal",
         },
-      }
+      },
+      {
+        path: "/shopCart",
+        name: "shopCart",
+        component: () => import(`@/views/${folderUrl}/shopCartView.vue`),
+        meta: {
+          isShow: true,
+          title: "shopCart",
+          icon: "shopCart",
+          footer: "cart",
+        },
+      },
     ],
   },
   // {

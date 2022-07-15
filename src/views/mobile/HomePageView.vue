@@ -26,12 +26,18 @@
       :title="item.title"
       :name="item.name"
     >
-      <good-list
-        v-loading="(queryData.goods || []).length === 0"
-        :goods="queryData.goods"
-      ></good-list>
     </van-tab>
   </van-tabs>
+  <div class="wrapper scroll-v" ref="wrapper" @scroll="wrapperScroll($event)">
+    <div class="wrapper-scroll" :style="{ height: containerHeight + 'px' }">
+      <good-list
+        :style="{ transform: `translateY(${scrollTopWrapper}px)` }"
+        class="g-l"
+        v-loading="(showGoods || []).length === 0"
+        :goods="showGoods"
+      ></good-list>
+    </div>
+  </div>
   <teleport to="body">
     <fuzzy-search
       search-label="name"
@@ -46,11 +52,11 @@
     ></fuzzy-search>
   </teleport>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
+import { ref, computed, nextTick, onBeforeMount, onMounted, watch } from "vue";
 import { getTabBarList, getCategoryList, getGoodList } from "@/http/api";
 import { homeData } from "@/types/home";
 import { reactive } from "@vue/reactivity";
-import { onBeforeMount, onMounted, ref } from "vue";
 import { good } from "@/types/good";
 interface selectInt {
   queryParam: string;
@@ -61,13 +67,41 @@ interface selectInt {
 const dataList = reactive(new homeData());
 const queryData = reactive({} as selectInt);
 const showPicker = ref(false);
+//容器真实高度
+let containerHeight = ref(0);
+//当前状态的索引
+let startKey = ref(0);
+//视窗内应该显示的 DOM 数量
+let showItemNum = ref(0);
+//容器dom节点
+const wrapper = ref(null);
+//容器高度
+let wrapperHeight = ref(0);
+
+//片段容器偏移量
+let scrollTopWrapper = ref(0);
+//元素高度
+let elHeight = (
+  ((document.clientHeight || window.innerHeight) / 750).toFixed(2) *
+  100 *
+  5.5
+).toFixed(2);
 onBeforeMount(() => {
   getTabBarList().then((res) => {
     dataList.tabBarList = res.data.data;
     dataList.activeTab = res.data.data[0].name;
   });
   getGoodList(queryData.queryParam).then((res) => {
+    let totalHeight = 0;
     queryData.goods = res.data.data || [];
+    //  queryData.goods.forEach((item, index) => {
+    //    item.height = totalHeight;
+    //    if (index % 2 ===0){
+    //       totalHeight +=5.5;
+    //    }
+    //  })
+    containerHeight.value = elHeight * queryData.goods.length;
+    initGoodsList();
   });
 });
 const changeQueryParam = (query: any) => {
@@ -81,4 +115,50 @@ const searchKeyWords = (query: string) => {
 const confirmKeyWords = (res: any) => {
   queryData.queryParam = res;
 };
+const initGoodsList = () => {
+  nextTick(() => {
+    //获取容器高度
+    wrapperHeight.value = wrapper.value.clientHeight;
+    //运算出应该显示的 DOM 数量
+    showItemNum.value = Math.ceil(wrapperHeight.value / elHeight) * 3;
+  });
+};
+
+//滚动事件
+const wrapperScroll = (e) => {
+  //计算当前状态的索引
+  let tempNum = Math.floor(e.target.scrollTop / elHeight);
+  //当前状态的索引发生变化才触发视图层刷新
+  if (tempNum !== startKey.value) {
+    startKey.value = tempNum;
+    scrollTopWrapper.value = e.target.scrollTop;
+    if (tempNum < 2) {
+      scrollTopWrapper.value = 0;
+    }
+  }
+};
+//对数据进行切片处理方法
+const showGoods = computed(() => {
+  return [
+    ...(queryData.goods || []).slice(
+      startKey.value,
+      showItemNum.value + startKey.value + 3
+    ),
+  ];
+});
 </script>
+<style lang="scss" scope>
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  .wrapper-scroll {
+    position: relative;
+  }
+}
+.g-l {
+  position: absolute;
+  width: 100%;
+}
+</style>
