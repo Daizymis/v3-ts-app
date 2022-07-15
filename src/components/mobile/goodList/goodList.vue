@@ -1,14 +1,14 @@
 <template>
   <div class="good-l">
-    <van-row class="g-r" :gutter="20" @scroll="touchScroll">
+    <van-row class="g-r" :gutter="20">
       <van-col
         ref="refCol"
         :span="12"
-        v-for="good in showGoods"
+        v-for="good in goods"
         :key="good.id"
         class="g-c"
         @click="toDetail(good)"
-        :style="`height: ${height}px`"
+        :style="{ transform: `translateY(${good.height}rem)` }"
       >
         <div>
           <van-image class="g-img" :src="good.img" />
@@ -58,39 +58,26 @@ const props = withDefaults(defineProps<Props>(), {
   goods: () => [],
 });
 const emit = defineEmits<Emits>();
-let showGoods = ref<any>([]);
 const height = ref("");
-watch(
-  () => props.goods,
-  (val) => {
-    showGoods.value = val.slice(0, 10) || [];
-    nextTick(() => {
-      let el = document.getElementsByClassName("g-c")[0];
-      data.itemH = el.clientHeight;
-      let total = document.getElementsByClassName("good-l")[0];
+// watch(
+//   () => props.goods,
+//   (val) => {
+//     showGoods.value = val.slice(0, 10) || [];
+//     nextTick(() => {
+//       let el = document.getElementsByClassName("g-c")[0];
+//       data.itemH = el.clientHeight;
+//       let total = document.getElementsByClassName("good-l")[0];
 
-      data.scrollH = total.scrollHeight;
-      let nav = document.getElementsByClassName("g-r")[0];
-      data.divH = nav.offsetHeight;
-      console.log(data);
-    });
-  }
-);
-let data = reactive({
-  itemH: 0,
-  scrollH: 0,
-  divH: 0,
-});
+//       data.scrollH = total.scrollHeight;
+//       let nav = document.getElementsByClassName("g-r")[0];
+//       data.divH = nav.offsetHeight;
+//       console.log(data);
+//     });
+//   }
+// );
 const instance = getCurrentInstance();
-// onMounted(() => {
-// });
 const toDetail = (good: good) => {
   emit("toDetail", good);
-};
-const touchScroll = (e: any) => {
-  if (e) {
-    console.log(e);
-  }
 };
 </script>
 <style lang="scss" scoped>

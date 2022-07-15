@@ -138,7 +138,7 @@ router.beforeEach((to) => {
   }
   if (!token && to.path !== "/login") {
     return "/login";
-  } else if (token && to.path == "/login") {
+  } else if (token && (to.path == "/login" || to.path == "/")) {
     return "/home";
   }
 });

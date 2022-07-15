@@ -1,7 +1,32 @@
+body,html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+/* mixin start */
+@mixin noScroll {
+    &::-webkit-scrollbar {
+        display:none
+      }
+}
 @mixin pointer {
     cursor: pointer;
 }
-
+/* mixin start */
+/* variables start */
+$white-color:#ffffff;
+.mobile-layout {
+    @include noScroll;
+    height: 100%;
+}
+.main {
+    padding-bottom: 0.7rem;
+}
+.scroll-v {
+    @include noScroll;
+}
+/* variables start */
 .flex-center {
     display: flex;
     justify-content: center;
@@ -17,7 +42,7 @@
 .danger-font {
     color: red;
 }
-$white-color:#ffffff;
+
 
 @media screen and (max-width:750px) {
     

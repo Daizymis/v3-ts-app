@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
+  <div class="mobile-layout">
+    <div class="main">
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </div>
     <van-tabbar v-model="active">
       <van-tabbar-item name="home" icon="wap-home" @click="toLink('home')"
         >home</van-tabbar-item
@@ -37,6 +39,7 @@ import { useRoute, useRouter } from "vue-router";
 const active = ref("home");
 const router = useRouter();
 const route = useRoute();
+document.title ="smartmall";
 const includeList = [{ path: "/home" }];
 const toLink = (url: string) => {
   router.push(url);
