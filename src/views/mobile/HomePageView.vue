@@ -35,10 +35,11 @@
         class="g-l"
         v-loading="(showGoods || []).length === 0"
         :goods="showGoods"
+        @to-detail="toDetail"
       ></good-list>
     </div>
   </div>
-  <teleport to="body">
+  <teleport v-if="showPicker" to="body">
     <fuzzy-search
       search-label="name"
       search-value="name"
@@ -58,6 +59,7 @@ import { getTabBarList, getCategoryList, getGoodList } from "@/http/api";
 import { homeData } from "@/types/home";
 import { reactive } from "@vue/reactivity";
 import { good } from "@/types/good";
+import { useRouter } from "vue-router";
 interface selectInt {
   queryParam: string;
   options: any[];
@@ -146,6 +148,10 @@ const showGoods = computed(() => {
     ),
   ];
 });
+const router = useRouter();
+const toDetail = (item:good) => {
+  router.push(`/gooddetail/${item.id}`)
+}
 </script>
 <style lang="scss" scope>
 .wrapper {

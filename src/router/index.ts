@@ -130,6 +130,20 @@ const routes: Array<RouteRecordRaw> = [
     name: "orders",
     component: () => import(`@/views/${folderUrl}/OrdersView.vue`),
   },
+  {
+    path: "/gooddetail/:id",
+    name: "gooddetail",
+    component: () => import(`@/views/${folderUrl}/GoodDetail.vue`),
+    beforeEnter: (to, from ,next)=>{
+      console.log(to, from ,next);
+      next();
+    }
+  },
+  {
+    path: "/notFound",
+    name: "notFound",
+    component: () => import(`@/views/notfound.vue`)
+  },
 ];
 
 const router = createRouter({
@@ -138,6 +152,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
+  if (!router.hasRoute(to.path)) {
+    return '/NotFound';
+  }
   const token: string | null = localStorage.getItem("token");
   const user: UserInfo | null = JSON.parse(
     localStorage.getItem("user") || "{}"
@@ -153,5 +170,8 @@ router.beforeEach((to) => {
     return "/home";
   }
 });
+router.afterEach((to, from)=>{
+  console.log(to,from)
+})
 
 export default router;
