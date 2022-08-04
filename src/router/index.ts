@@ -115,6 +115,16 @@ const routes: Array<RouteRecordRaw> = [
           footer: "cart",
         },
       },
+      {
+        path: "/noticeManagement",
+        name: "noticeManagement",
+        component: () => import(`@/views/${folderUrl}/noticeManagementView.vue`),
+        meta: {
+          isShow: true,
+          title: "noticeManagement",
+          icon: "shopCart"
+        },
+      },
     ],
   },
   // {
@@ -142,7 +152,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/notFound",
     name: "notFound",
-    component: () => import(`@/views/notfound.vue`)
+    component: () => import(`@/views/notFound.vue`)
   },
 ];
 
@@ -152,9 +162,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  if (!router.hasRoute(to.path)) {
-    return '/NotFound';
-  }
+  // if (!router.hasRoute(to.path)) {
+  //   return '/NotFound';
+  // }
   const token: string | null = localStorage.getItem("token");
   const user: UserInfo | null = JSON.parse(
     localStorage.getItem("user") || "{}"

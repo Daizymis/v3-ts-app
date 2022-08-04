@@ -6,11 +6,11 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Card: typeof import('./src/components/mobile/card/card.vue')['default']
+    Editor: typeof import('./src/components/editor.vue')['default']
     FieldSelect: typeof import('./src/components/mobile/field-select/fieldSelect.vue')['default']
     FuzzySearch: typeof import('./src/components/mobile/fuzzy-search/fuzzySearch.vue')['default']
     GoodList: typeof import('./src/components/mobile/goodList/goodList.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    MyLoading: typeof import('./src/components/mobile/loading/myLoading.vue')['default']
     Order: typeof import('./src/components/mobile/order/order.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
