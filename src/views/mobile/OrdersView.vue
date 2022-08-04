@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { orderInt } from "@/components/mobile/order/order.vue";
-import { onBeforeMount, reactive, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
 
 // import card from '@/components/mobile/card/card'

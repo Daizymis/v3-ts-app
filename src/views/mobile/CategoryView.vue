@@ -9,6 +9,7 @@
     </van-sidebar>
     <div class="right">
       <good-list
+        class="g-l"
         v-loading="(postData.goods || []).length === 0"
         :goods="postData.goods"
       ></good-list>
@@ -50,17 +51,20 @@ onBeforeMount(() => {
 .category-nav {
   display: flex;
   padding-bottom: 0.7rem;
-  .left{
-     height: 100vh;
-      overflow-y: auto;
-      &::-webkit-scrollbar {
-        display:none
-      }
+  .left {
+    height: 100vh;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .right {
     width: 80%;
     height: 100vh;
     overflow-y: auto;
   }
+  // .g-l {
+  //   height: 100%;
+  // }
 }
 </style>

@@ -6,9 +6,10 @@ import {
   Field,
   Popover,
   Popup,
-  Sticky 
+  Sticky,
 } from "vant";
-export function importVant(app: any) {
+import { App } from "vue";
+export function importVant(app: App<Element>) {
   app.use(Tabbar);
   app.use(TabbarItem);
   app.use(Search);
@@ -16,5 +17,5 @@ export function importVant(app: any) {
   app.use(Field);
   app.use(Popover);
   app.use(Popup);
-  app.use(Sticky );
+  app.use(Sticky);
 }

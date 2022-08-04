@@ -36,16 +36,16 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-const active = ref("home");
+const active = ref<string>("home");
 const router = useRouter();
 const route = useRoute();
-document.title ="smartmall";
-const includeList = [{ path: "/home" }];
+document.title = "smartmall";
+// const includeList = [{ path: "/home" }];
 const toLink = (url: string) => {
   router.push(url);
 };
 onBeforeMount(() => {
   console.log(active.value);
-  active.value = route.meta.footer || "home";
+  active.value = route?.meta?.footer || "home";
 });
 </script>
