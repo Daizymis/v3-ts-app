@@ -1,8 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import LoginView from "../views/pc/LoginView.vue";
 import { UserInfo } from "@/types/user";
 import { useUserStoreWithOut } from "@/store/modules/user";
-import mobileRoutes from './mobile/route'
+import mobileRoutes from './mobile/index'
 import pcRoutes from './pc/index'
 const isTablet =
   /(?:iPad|PlayBook)/.test(navigator.userAgent) ||
