@@ -71,7 +71,14 @@
 
 <script lang="ts">
 import { useUserStoreWithOut } from "@/store/modules/user";
-import { defineComponent, computed, onBeforeMount, ref, onMounted, getCurrentInstance } from "vue";
+import {
+  defineComponent,
+  computed,
+  onBeforeMount,
+  ref,
+  onMounted,
+  getCurrentInstance,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
@@ -87,7 +94,7 @@ export default defineComponent({
     };
     const logOut = () => {
       userStore.logOut();
-      router.push("/");
+      router.push("/login");
     };
     const userName = computed(() => userStore.userInfo?.name);
     const toPersonalSet = () => {
@@ -99,7 +106,7 @@ export default defineComponent({
     });
     onMounted(() => {
       const instance = getCurrentInstance();
-    })
+    });
     return {
       menuList,
       defaultActive,

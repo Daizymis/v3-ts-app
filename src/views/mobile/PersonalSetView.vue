@@ -26,6 +26,7 @@
         icon="share-o"
         text="待分享"
         :badge="badge.share || null"
+        @click="() => (showShare = true)"
       />
       <van-grid-item
         icon="clock-o"

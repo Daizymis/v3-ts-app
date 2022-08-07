@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import { UserInfo } from "@/types/user";
 import { useUserStoreWithOut } from "@/store/modules/user";
-import mobileRoutes from './mobile/index'
-import pcRoutes from './pc/index'
+import mobileRoutes from "./mobile/index";
+import pcRoutes from "./pc/index";
 const isTablet =
   /(?:iPad|PlayBook)/.test(navigator.userAgent) ||
   (/(?:Android)/.test(navigator.userAgent) &&
@@ -24,12 +24,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/notFound",
     name: "notFound",
-    component: () => import(`@/views/notFound.vue`)
+    component: () => import(`@/views/notFound.vue`),
   },
   {
-    path: '/:pathMatch(.*)', // 此处需特别注意至于最底部
-    redirect: '/notFound'
-  }
+    path: "/:pathMatch(.*)", // 此处需特别注意至于最底部
+    redirect: "/notFound",
+  },
 ];
 
 const router = createRouter({
@@ -37,10 +37,7 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  if (!router.hasRoute(to.path)) {
-    next() ;
-  }
+router.beforeEach((to) => {
   const token: string | null = localStorage.getItem("token");
   const user: UserInfo | null = JSON.parse(
     localStorage.getItem("user") || "{}"
@@ -56,8 +53,8 @@ router.beforeEach((to, from, next) => {
     return "/home";
   }
 });
-router.afterEach((to, from)=>{
-  console.log(to,from)
-})
+router.afterEach((to, from) => {
+  console.log(to, from);
+});
 
 export default router;
