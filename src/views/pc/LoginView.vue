@@ -33,11 +33,11 @@
           placeholder="请输入"
         />
       </el-form-item>
-      <el-footer> 
-        <el-button type="primary" size="large" plain @click="onSubmit(loginFormRef)"
+      <el-footer style="text-align: center;"> 
+        <el-button size="large" plain @click="onSubmit(loginFormRef)"
           >登录</el-button
         >
-        <el-button type="primary" size="large" plain @click="onCancel(loginFormRef)"
+        <el-button size="large" plain @click="onCancel(loginFormRef)"
           >清空</el-button
         >
       </el-footer>
@@ -53,6 +53,7 @@ import router from "@/router";
 import { useUserStoreWithOut } from "@/store/modules/user";
 import { UserInfo } from "@/types/user";
 import { loadFull } from "tsparticles";
+import { useUser } from "@/hook/useUser";
 enum THEME {
   "dark" = "dark",
   "light" = "light",
@@ -61,8 +62,8 @@ export default defineComponent({
   name: "LoginView",
   setup() {
     const data = reactive(new initData());
-    const userStore = useUserStoreWithOut();
-    const options = reactive({
+    // const userStore = useUserStoreWithOut();
+    const options = {
       fpsLimit: 60,
       particles: {
         move: {
@@ -121,7 +122,7 @@ export default defineComponent({
           },
         },
       ],
-    });
+    };
     const rules = {
       userName: [
         {
@@ -146,6 +147,7 @@ export default defineComponent({
         },
       ],
     };
+    const {setUserInfo, setToken} = useUser();
     const onSubmit = (loginFormRef: FormInstance) => {
       loginFormRef?.validate((valid: boolean) => {
         if (valid) {
@@ -161,8 +163,8 @@ export default defineComponent({
               age: 18,
               password: data.loginForm.password,
             };
-            userStore.setUserInfo(user);
-            userStore.setToken("122411332342");
+            setUserInfo(user);
+            setToken("122411332342");
             router.push("/home");
           });
         }

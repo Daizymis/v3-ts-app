@@ -9,6 +9,7 @@
               style="transform: translateY(50%)"
               src="../../assets/logo.png"
             />
+            <el-icon><Fold style="width: 20px; height: 20px;"/> <Expand /></el-icon>
           </el-col>
           <el-col :span="16"><h3>Manage System</h3></el-col>
           <el-col :span="4" class="user-nav">
@@ -70,6 +71,7 @@
 </template>
 
 <script lang="ts">
+import { useUser } from "@/hook/useUser";
 import { useUserStoreWithOut } from "@/store/modules/user";
 import {
   defineComponent,
@@ -88,15 +90,15 @@ export default defineComponent({
     const router = useRouter();
     const menuList = router.getRoutes().filter((route) => route.meta.isShow);
     const defaultActive = ref(menuList[0].name);
-    const userStore = useUserStoreWithOut();
+    const {userInfo, logOut:userOut} = useUser();
     const handleOpen = (menu: any) => {
       router.push(menu.path);
     };
     const logOut = () => {
-      userStore.logOut();
+      userOut();
       router.push("/login");
     };
-    const userName = computed(() => userStore.userInfo?.name);
+    const userName = computed(() => userInfo?.name);
     const toPersonalSet = () => {
       router.push("/personalSet");
     };
@@ -112,7 +114,6 @@ export default defineComponent({
       defaultActive,
       handleOpen,
       logOut,
-      userStore,
       userName,
       toPersonalSet,
     };

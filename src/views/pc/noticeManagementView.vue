@@ -27,9 +27,9 @@
     </el-form-item>
   </el-form>
   <div>
-    <el-button type="primary" plain :icon="Plus" @click="add">add</el-button>
-    <el-button type="primary" :icon="Edit" @click="edit">Edit</el-button>
-    <el-button type="danger" :icon="Delete" @click="avoid">Delete</el-button>
+    <el-button type="primary" plain icon="Plus" @click="add">add</el-button>
+    <el-button type="primary" icon="Edit" @click="edit">Edit</el-button>
+    <el-button type="danger" icon="Delete" @click="avoid">Delete</el-button>
   </div>
   <el-table v-loading="loading" :data="noticeList" style="width: 100%">
     <el-table-column fixed prop="orderNo" label="orderNo" width="150" />
@@ -93,7 +93,7 @@ window.onmousemove = (event) => {
   const pt = document.body.scrollTop || document.documentElement.scrollTop;
   const pf = document.body.scrollLeft || document.documentElement.scrollLeft;
 
-  let el: HTMLElement = document.getElementById("mycarton");
+  let el: HTMLElement = document.getElementById("mycarton") as HTMLElement;
   el.style.top = event.clientY + pt + 10 + "px";
   el.style.left = event.clientX + pf + "px";
 };
