@@ -19,7 +19,12 @@
     @search="searchKeyWords"
     @confirm="confirmKeyWords"
   ></field-select> -->
-  <van-tabs v-model:active="dataList.activeTab" swipeable sticky color="#606b93">
+  <van-tabs
+    v-model:active="dataList.activeTab"
+    swipeable
+    sticky
+    color="#606b93"
+  >
     <van-tab
       v-for="item in dataList.tabBarList"
       :key="item.id"
@@ -84,9 +89,8 @@ let wrapperHeight = ref(0);
 let scrollTopWrapper = ref(0);
 //元素高度
 let elHeight = (
-  ((document.clientHeight || window.innerHeight) / 750).toFixed(2) *
-  100 *
-  5.5
+  (((window.clientHeight || window.innerHeight) / 750).toFixed(2) * 100 * 5.5) /
+  2
 ).toFixed(2);
 onBeforeMount(() => {
   getTabBarList().then((res) => {
@@ -129,7 +133,7 @@ const initGoodsList = () => {
 //滚动事件
 const wrapperScroll = (e) => {
   //计算当前状态的索引
-  let tempNum = Math.floor(e.target.scrollTop / elHeight);
+  let tempNum = Math.floor(e.target.scrollTop / elHeight) * 2;
   //当前状态的索引发生变化才触发视图层刷新
   if (tempNum !== startKey.value) {
     startKey.value = tempNum;
@@ -137,6 +141,9 @@ const wrapperScroll = (e) => {
     if (tempNum < 2) {
       scrollTopWrapper.value = 0;
     }
+  } else if (e.target.scrollTop < scrollTopWrapper.value) {
+    startKey.value = tempNum;
+    scrollTopWrapper.value = e.target.scrollTop;
   }
 };
 //对数据进行切片处理方法
@@ -149,15 +156,15 @@ const showGoods = computed(() => {
   ];
 });
 const router = useRouter();
-const toDetail = (item:good) => {
-  router.push(`/gooddetail/${item.id}`)
-}
+const toDetail = (item: good) => {
+  router.push(`/gooddetail/${item.id}`);
+};
 </script>
 <style lang="scss" scope>
 .wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 84vh;
   overflow: auto;
   .wrapper-scroll {
     position: relative;

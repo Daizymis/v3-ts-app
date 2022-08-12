@@ -15,38 +15,20 @@
 
 <script setup lang="ts">
 import { orderInt } from "@/components/mobile/order/order.vue";
+import { getOrders } from "@/http/api";
 import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
 
 // import card from '@/components/mobile/card/card'
 const list = ref<orderInt[]>([]);
 onBeforeMount(() => {
-  getOrders();
+  initData();
 });
-const getOrders = () => {
-  list.value = [
-    {
-      icon: "",
-      shopName: "臭宝旗舰店",
-      status: "等待发货",
-      totalPrice: 0.0,
-      decount: 0.0,
-      price: 0.0,
-      goods: [
-        {
-          title: " [狂暑季价] 臭宝螺狮粉大片腐竹柳州螺狮粉",
-          tag: "标签",
-          desc: "爆爆浓汤螺狮粉（乐享版）280g*3袋",
-          price: 0.0,
-          tags: ["7天无理由", "运费险"],
-          num: 3,
-        },
-      ],
-      tags: [],
-      btns: [],
-      morebtn: [],
-    },
-  ];
+const initData = () => {
+  getOrders().then(data => {
+    console.log(data);
+    list.value = data.data.data;
+  })
 };
 const router = useRouter();
 const back = () => {

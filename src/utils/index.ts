@@ -15,3 +15,7 @@
     }
     return index;
   }
+
+  export function formatAmount(amount: number | string = 0, fixed=2) {
+    return Number(amount).toFixed(fixed)
+  }

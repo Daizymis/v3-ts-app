@@ -35,7 +35,7 @@
         <slot name="real-price">
           <div>
             <span class="currency">{{ currency }}</span
-            ><span class="price">{{ price }}</span>
+            ><span class="price">{{ formatAmount(price) }}</span>
           </div>
         </slot>
         <slot name="num">
@@ -55,6 +55,7 @@ export default {
 import { number } from "echarts";
 import { makeStringProp, numericProp } from "@/utils/props";
 import { useSlots, defineProps, withDefaults, defineExpose } from "vue";
+import { formatAmount } from '@/utils';
 export interface CardProps {
   id?: string | number;
   tag?: string;

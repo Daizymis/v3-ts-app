@@ -9,3 +9,4 @@ export const getGoodList = (data:any) => http({url: '/goods/getGoodList', method
 export const updateUser = (data:UserInfo) => http({url: '/updateUser', method:'post',data})
 export const getTabBarList = () => http({url: '/goods/getTabBarList', method: 'get'})
 export const getCategoryList = (data:string) => http({url: '/goods/getCategoryList', method:'get',data})
+export const getOrders = () => http({url: '/order/getOrders', method:'get'})
