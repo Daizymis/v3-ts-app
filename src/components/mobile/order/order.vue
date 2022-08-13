@@ -22,15 +22,24 @@
       :price="good.price"
       :tags="good.tags"
       :num="good.num"
-      :thumbLink = 'good.thumbLink'
+      :thumbLink="good.thumbLink"
     >
     </card>
     <van-divider />
     <div class="bottom-amount">
-      <span gray>总价<span currency>{{order.currency}}</span>{{formatAmount(formatAmount(order.totalPrice))}}</span>
-      <span v-if="order.decount > 0" gray>,优惠<span currency>{{order.currency}}</span>{{formatAmount(order.decount)}}</span>
-      <span>实付<span>{{order.currency}}</span>{{formatAmount(order.price)}}</span>
-      </div>
+      <span gray
+        >总价<span currency>{{ order.currency }}</span
+        >{{ formatAmount(formatAmount(order.totalPrice)) }}</span
+      >
+      <span v-if="order.decount > 0" gray
+        >,优惠<span currency>{{ order.currency }}</span
+        >{{ formatAmount(order.decount) }}</span
+      >
+      <span
+        >实付<span>{{ order.currency }}</span
+        >{{ formatAmount(order.price) }}</span
+      >
+    </div>
     <van-divider />
     <slot name="footer"></slot>
   </div>
@@ -43,7 +52,7 @@ export default {
 <script setup lang="ts">
 import { useSlots, defineProps, withDefaults, defineExpose } from "vue";
 import { CardProps } from "../card/card.vue";
-import { formatAmount } from '@/utils';
+import { formatAmount } from "@/utils";
 export interface BtnInt {
   title: string;
   show: boolean;
@@ -72,7 +81,7 @@ interface Props {
   order: orderInt;
 }
 const props = withDefaults(defineProps<Props>(), {
-  order: () => ({currency: '￥'} as orderInt),
+  order: () => ({ currency: "￥" } as orderInt),
 });
 defineExpose({ ...props });
 </script>
@@ -85,8 +94,8 @@ defineExpose({ ...props });
 }
 .bottom-amount {
   text-align: right;
-  &>span:last-child {
-    padding: 0 0.2rem
+  & > span:last-child {
+    padding: 0 0.2rem;
   }
 }
 </style>

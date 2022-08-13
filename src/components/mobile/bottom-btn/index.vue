@@ -1,31 +1,32 @@
 <template>
-  <div>
+  <div class="bottom-btn">
     <van-popover
-      v-if="(more || []).length > 0"
+      v-if="(morebtn || []).length > 0"
       v-model:show="showMore"
-      theme="dark"
+      placement="bottom-start"
     >
       <van-row
-        v-for="(btn, index) in btns"
-        :key="btn.text + index"
-        @click="btnClick(btn.event)"
+        v-for="(btn, index) in morebtn"
+        :key="btn + index"
+        @click="btnClick(btn)"
       >
-        {{ btn.text }}
+        {{ ORDERACTION[btn] }}
       </van-row>
-      <template #reference>
-        <van-button type="primary">更多</van-button>
-      </template>
+      <template #reference> <span gray class="font-24">更多</span> </template>
     </van-popover>
-    <van-button
-      v-for="(btn, index) in btns"
-      :key="btn.text + index"
-      @click="btnClick(btn.event)"
-    >
-      {{ btn.text }}
-    </van-button>
+    <div class="float-right">
+      <van-button
+        v-for="(btn, index) in btns"
+        :key="btn + index"
+        @click="btnClick(btn)"
+        round
+      >
+        {{ ORDERACTION[btn] }}
+      </van-button>
+    </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: "bottom-btn",
 };
@@ -37,28 +38,31 @@ import {
   withDefaults,
   defineExpose,
   defineEmits,
+  ref,
 } from "vue";
+import { ORDERACTION } from "@/types/enum";
 interface Props {
   btns: any[];
-  more?: any[];
+  morebtn?: any[];
   data?: any;
 }
 interface Emits {
-  (e: "evaluate", data: any): void;
-  (e: "showDistribution", data: any): void;
-  (e: "addCart", data: any): void;
-  (e: "delete", data: any): void;
-  (e: "evaluate", data: any): void;
-  (e: "sendOut", data: any): void;
+  (e: "action", type: string, data: any): void;
 }
 const props = withDefaults(defineProps<Props>(), {});
 const emit = defineEmits<Emits>();
 
-const [showMore, toggle] = useToggle(false);
+const showMore = ref(false);
 const btnClick = (event: string) => {
-  emit(event, props.data);
-};
-const actions = () => {
-  toggle(!showMore.value);
+  emit("action", event, props.data);
 };
 </script>
+<style lang="scss" scoped>
+@import url(../../../assets/css/mobile.scss);
+.bottom-btn {
+  :deep .van-button {
+    width: 120px;
+    margin-right: 10px;
+  }
+}
+</style>

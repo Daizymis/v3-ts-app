@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BottomBtn: typeof import('./src/components/mobile/bottom-btn/index.vue')['default']
     Card: typeof import('./src/components/mobile/card/card.vue')['default']
     Editor: typeof import('./src/components/editor.vue')['default']
     FieldSelect: typeof import('./src/components/mobile/field-select/fieldSelect.vue')['default']
@@ -27,6 +28,7 @@ declare module '@vue/runtime-core' {
     VanNavBar: typeof import('vant/es')['NavBar']
     VanNoticeBar: typeof import('vant/es')['NoticeBar']
     VanPicker: typeof import('vant/es')['Picker']
+    VanPopover: typeof import('vant/es')['Popover']
     VanPopup: typeof import('vant/es')['Popup']
     VanRow: typeof import('vant/es')['Row']
     VanSearch: typeof import('vant/es')['Search']

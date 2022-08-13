@@ -9,7 +9,17 @@
       <van-icon name="search" size="18" />
     </template>
   </van-nav-bar>
-  <order v-for="order in list" :key="order.id" :order="order"></order>
+  <div v-for="order in list" :key="order.id">
+    <order :order="order"></order>
+    <bottom-btn
+      :btns="order.btns"
+      :morebtn="order.morebtn"
+      :data="order"
+      @action="action"
+    ></bottom-btn>
+    <van-divider />
+  </div>
+
   <div></div>
 </template>
 
@@ -25,10 +35,10 @@ onBeforeMount(() => {
   initData();
 });
 const initData = () => {
-  getOrders().then(data => {
+  getOrders().then((data) => {
     console.log(data);
     list.value = data.data.data;
-  })
+  });
 };
 const router = useRouter();
 const back = () => {
@@ -36,5 +46,8 @@ const back = () => {
 };
 const search = () => {
   router.push("searchOrder");
+};
+const action = (type: string, data: orderInt) => {
+  console.log(type, data);
 };
 </script>
