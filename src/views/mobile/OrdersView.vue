@@ -9,17 +9,17 @@
       <van-icon name="search" size="18" />
     </template>
   </van-nav-bar>
-  <div v-for="order in list" :key="order.id">
-    <order :order="order"></order>
-    <bottom-btn
-      :btns="order.btns"
-      :morebtn="order.morebtn"
-      :data="order"
-      @action="action"
-    ></bottom-btn>
-    <van-divider />
+  <div class="list-nav">
+    <div v-for="order in list" :key="order.id">
+      <order :order="order"></order>
+      <bottom-btn
+        :btns="order.btns"
+        :morebtn="order.morebtn"
+        :data="order"
+        @action="action"
+      ></bottom-btn>
+    </div>
   </div>
-
   <div></div>
 </template>
 
@@ -51,3 +51,14 @@ const action = (type: string, data: orderInt) => {
   console.log(type, data);
 };
 </script>
+<style lang="scss" scoped>
+.list-nav {
+  background-color: #f1f3f4;
+  &>div {
+    background-color: #ffffff;
+    margin: 5px;
+    border-radius: 8px;
+    padding-bottom: 10px;
+  }
+}
+</style>

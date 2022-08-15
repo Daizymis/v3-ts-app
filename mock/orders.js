@@ -24,7 +24,7 @@ export default [
           ],
           tags: [],
           btns: ["delete", "showDistribution", "evaluate"],
-          morebtn: [],
+          morebtn: ['showDistribution'],
         },
         {
           id: 1,
@@ -48,7 +48,7 @@ export default [
           ],
           tags: [],
           btns: ["sendOut", "addCart", "modifyAddress"],
-          morebtn: ["showDistribution"],
+          morebtn: ["showDistribution", 'evaluate'],
         },
         {
           id: 1,
@@ -108,7 +108,7 @@ export default [
           ],
           tags: [],
           btns: ["confirm"],
-          morebtn: [],
+          morebtn: ["showDistribution", 'evaluate'],
         },
         {
           id: 1,

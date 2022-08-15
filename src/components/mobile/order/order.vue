@@ -25,7 +25,6 @@
       :thumbLink="good.thumbLink"
     >
     </card>
-    <van-divider />
     <div class="bottom-amount">
       <span gray
         >总价<span currency>{{ order.currency }}</span
@@ -36,11 +35,10 @@
         >{{ formatAmount(order.decount) }}</span
       >
       <span
-        >实付<span>{{ order.currency }}</span
+        >实付<span currency>{{ order.currency }}</span
         >{{ formatAmount(order.price) }}</span
       >
     </div>
-    <van-divider />
     <slot name="footer"></slot>
   </div>
 </template>

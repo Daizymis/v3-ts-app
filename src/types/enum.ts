@@ -14,5 +14,5 @@ export enum ORDERACTION {
   delete = "删除订单",
   sendOut = "提醒发货",
   modifyAddress = "修改地址",
-  confirm = "确认收获",
+  confirm = "确认收货",
 }

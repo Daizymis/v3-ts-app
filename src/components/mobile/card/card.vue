@@ -100,8 +100,8 @@ defineExpose({ ...props });
     top: -1px;
   }
   .content-nav {
-    padding: 10px 20px;
-    width: calc(100% - 230px);
+    padding: 10px 10px;
+    width: calc(100% - 200px);
   }
   .title {
     font-size: 28px;
@@ -142,7 +142,7 @@ defineExpose({ ...props });
     }
   }
   .right {
-    flex: 1 1 50%;
+    // flex: 1 1 50%;
     text-align: right;
     font-size: 28px;
     > div {
