@@ -44,6 +44,15 @@
         :badge="badge.evaluation || null"
       />
     </van-grid>
+    <van-grid :column-num="5" :border="false">
+      <van-grid-item
+        icon-prefix="iconfont icon-map"
+        text="收货地址"
+      >
+      <i class="van-badge__wrapper van-icon iconfont icon-map van-grid-item__icon"></i>
+      <span class="van-grid-item__text">收货地址</span>
+      </van-grid-item>
+    </van-grid>
   </div>
   <van-share-sheet
     v-model:show="showShare"
