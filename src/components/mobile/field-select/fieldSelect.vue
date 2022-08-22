@@ -9,17 +9,16 @@
       @click="showPicker = true"
     >
     </van-field>
-    <fuzzy-search
+    <m-search
       v-bind="$attrs"
       :search-label="sLabel"
       :search-value="sValue"
       v-model:show-picker="showPicker"
       @onShow="onShow"
-    ></fuzzy-search>
+    ></m-search>
   </div>
 </template>
 <script lang="ts" setup>
-import fuzzySearch from "../fuzzy-search/fuzzySearch";
 import { withDefaults, defineProps, ref } from "vue";
 interface Props {
   sValue: string;

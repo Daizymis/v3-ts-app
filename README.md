@@ -1,24 +1,7 @@
-# v3-ts-app
+Originally it's a demo project to learn vue3
 
-## Project setup
-```
-npm install
-```
+## mobile - smartmall
+like a on-line shopping store
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## pc
+maybe tabular system
