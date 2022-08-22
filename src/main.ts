@@ -12,12 +12,14 @@ import { setupStore } from "@/store";
 import Particles from "particles.vue3";
 // import common css
 import "@/assets/css/common.scss";
-import { importVant } from "@/utils/plugin";
+import { importVant,importMinUI } from "@/utils/plugin";
 import "amfe-flexible";
-
+import 'min-comp/dist/style.css'
 const app = createApp(App);
 importVant(app);
+importMinUI(app)
 setupStore(app);
+
 app.use(Mock);
 app.use(Particles);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

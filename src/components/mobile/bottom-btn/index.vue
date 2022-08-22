@@ -1,7 +1,7 @@
 <template>
   <div class="bottom-btn">
     <div>
-      <van-popover
+      <!-- <van-popover
         ref="morePopver"
         v-if="(morebtn || []).length > 0"
         v-model:show="showMore"
@@ -20,7 +20,12 @@
         <template #reference>
           <span ref="moreBtn" gray class="font-24 more-text">更多</span>
         </template>
-      </van-popover>
+      </van-popover> -->
+      <m-popver :actions="morebtn" @action="btnClick">
+        <template v-slot:btn="scope">
+          {{ ORDERACTION[scope.btn] }}
+        </template>
+      </m-popver>
     </div>
     <div>
       <van-button
@@ -35,6 +40,7 @@
   </div>
 </template>
 <script lang="ts">
+import {popover} from 'min-comp';
 export default {
   name: "bottom-btn",
 };
