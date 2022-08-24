@@ -1,29 +1,16 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import LoginView from "@/views/pc/LoginView.vue";
-import { UserInfo } from "@/types/user";
-import { useUserStoreWithOut } from "@/store/modules/user";
-const isTablet =
-  /(?:iPad|PlayBook)/.test(navigator.userAgent) ||
-  (/(?:Android)/.test(navigator.userAgent) &&
-    !/(?:Mobile)/.test(navigator.userAgent)) ||
-  (/(?:Firefox)/.test(navigator.userAgent) &&
-    /(?:Tablet)/.test(navigator.userAgent));
+import { defineAsyncComponent } from "vue";
+import { RouteRecordRaw } from "vue-router";
 
-const folderUrl =
-  /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) &&
-  !isTablet == true
-    ? "mobile"
-    : "pc";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: () => import(`@/views/pc/LoginView.vue`),
   },
   {
     path: "",
     name: "",
-    component: () => import(`@/views/${folderUrl}/LayoutView.vue`),
+    component: () => import(`@/views/pc/LayoutView.vue`),
     // redirect: '/home/order',
     children: [
       {
@@ -35,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: "List",
           footer: "home",
         },
-        component: () => import(`@/views/${folderUrl}/HomePageView.vue`),
+        component: () => import(`@/views/pc/HomePageView.vue`),
       },
       {
         path: "order",
@@ -45,23 +32,12 @@ const routes: Array<RouteRecordRaw> = [
           title: "Orders",
           icon: "List",
         },
-        component: () => import(`@/views/${folderUrl}/OrderView.vue`),
-      },
-      {
-        path: "/personalSet",
-        name: "personalSet",
-        component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
-        meta: {
-          isShow: true,
-          title: "personalSet",
-          icon: "personal",
-          footer: "personal",
-        },
+        component: () => import(`@/views/pc/OrderView.vue`),
       },
       {
         path: "/noticeManagement",
         name: "noticeManagement",
-        component: () => import(`@/views/${folderUrl}/noticeManagementView.vue`),
+        component: () => defineAsyncComponent(()=>import( /* @vite-ignore */ `@/views/pc/noticeManagementView.vue`)),
         meta: {
           isShow: true,
           title: "noticeManagement",
@@ -71,10 +47,20 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/build",
         name: "build",
-        component: () => import(`@/views/${folderUrl}/build/index.vue`),
+        component: () => import(/* @vite-ignore */`@/views/pc/build/index.vue`),
         meta: {
           isShow: true,
           title: "build",
+          icon: "OfficeBuilding"
+        },
+      },
+      {
+        path: "/cartoon",
+        name: "cartoon",
+        component: () => import(`@/views/pc/CartoonShowView.vue`),
+        meta: {
+          isShow: true,
+          title: "cartoon",
           icon: "OfficeBuilding"
         },
       },
@@ -83,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/personalSet",
     name: "personalSet",
-    component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
+    component: () => import(/* @vite-ignore */`@/views/pc/PersonalSetView.vue`),
   },
 ];
 

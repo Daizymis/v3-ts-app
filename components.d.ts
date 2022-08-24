@@ -3,6 +3,8 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 import '@vue/runtime-core'
 
+export {}
+
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BottomBtn: typeof import('./src/components/mobile/bottom-btn/index.vue')['default']
@@ -42,5 +44,3 @@ declare module '@vue/runtime-core' {
     VanTag: typeof import('vant/es')['Tag']
   }
 }
-
-export {}

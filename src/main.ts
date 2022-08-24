@@ -7,7 +7,7 @@ import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 /*element end */
 import Mock from "mockjs";
-require("../mock");
+import "../mock/index";
 import { setupStore } from "@/store";
 import Particles from "particles.vue3";
 // import common css

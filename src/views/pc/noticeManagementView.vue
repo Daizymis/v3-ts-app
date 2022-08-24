@@ -88,7 +88,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from "vue";
+import { defineComponent, onUnmounted, reactive, ref, toRefs } from "vue";
 window.onmousemove = (event) => {
   const pt = document.body.scrollTop || document.documentElement.scrollTop;
   const pf = document.body.scrollLeft || document.documentElement.scrollLeft;
@@ -117,6 +117,9 @@ export default defineComponent({
     const save = () => {
       console.log(myEditor.value);
     };
+    onUnmounted(()=>{
+      window.onmousemove = null;
+    })
     return {
       ...toRefs(data),
       myEditor,

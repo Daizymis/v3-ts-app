@@ -95,6 +95,6 @@ let orderList = {
           ]
     }
 };
-export default {
+export default [{
     'get|/getOrderList': orderList
-}
+}]

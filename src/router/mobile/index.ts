@@ -1,17 +1,16 @@
 import {  RouteRecordRaw } from "vue-router";
-import LoginView from "@/views/pc/LoginView.vue";
 
 const folderUrl = 'mobile'
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
     name: "login",
-    component: LoginView,
+    component: ()=> import('@/views/pc/LoginView.vue'),
   },
   {
     path: "",
     name: "",
-    component: () => import(`@/views/${folderUrl}/LayoutView.vue`),
+    component: () => import(/* @vite-ignore */`@/views/${folderUrl}/LayoutView.vue`),
     children: [
       {
         path: "/home",
@@ -22,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: "List",
           footer: "home",
         },
-        component: () => import(`@/views/${folderUrl}/HomePageView.vue`),
+        component: () => import(/* @vite-ignore */`@/views/${folderUrl}/HomePageView.vue`),
       },
         {
           path: "order",
@@ -32,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
             title: "Orders",
             icon: "List",
           },
-          component: () => import(`@/views/${folderUrl}/OrderView.vue`),
+          component: () => import(/* @vite-ignore */`@/views/${folderUrl}/OrderView.vue`),
         },
         {
           path: "order",
@@ -42,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
             title: "Orders",
             icon: "List",
           },
-          component: () => import(`@/views/${folderUrl}/OrderView.vue`),
+          component: () => import(/* @vite-ignore */`@/views/${folderUrl}/OrderView.vue`),
         },
         {
           path: "good",
@@ -52,7 +51,7 @@ const routes: Array<RouteRecordRaw> = [
             title: "Goods",
             icon: "ShoppingBag",
           },
-          component: () => import(`@/views/${folderUrl}/GoodsView.vue`),
+          component: () => import(/* @vite-ignore */`@/views/${folderUrl}/GoodsView.vue`),
         },
       {
         path: "/category",
@@ -63,7 +62,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: "List",
           footer: "category",
         },
-        component: () => import(`@/views/${folderUrl}/CategoryView.vue`),
+        component: () => import(/* @vite-ignore */`@/views/${folderUrl}/CategoryView.vue`),
       },
       {
         path: "/message",
@@ -74,12 +73,12 @@ const routes: Array<RouteRecordRaw> = [
           icon: "List",
           footer: "message",
         },
-        component: () => import(`@/views/${folderUrl}/MessageView.vue`),
+        component: () => import(/* @vite-ignore */`@/views/${folderUrl}/MessageView.vue`),
       },
       {
         path: "/personalSet",
         name: "personalSet",
-        component: () => import(`@/views/${folderUrl}/PersonalSetView.vue`),
+        component: () => import(/* @vite-ignore */`@/views/${folderUrl}/PersonalSetView.vue`),
         meta: {
           isShow: true,
           title: "personalSet",
@@ -90,7 +89,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/shopCart",
         name: "shopCart",
-        component: () => import(`@/views/${folderUrl}/shopCartView.vue`),
+        component: () => import(/* @vite-ignore */`@/views/${folderUrl}/shopCartView.vue`),
         meta: {
           isShow: true,
           title: "shopCart",
@@ -103,12 +102,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/orders",
     name: "orders",
-    component: () => import(`@/views/${folderUrl}/OrdersView.vue`),
+    component: () => import(/* @vite-ignore */`@/views/${folderUrl}/OrdersView.vue`),
   },
   {
     path: "/gooddetail/:id",
     name: "gooddetail",
-    component: () => import(`@/views/${folderUrl}/GoodDetail.vue`),
+    component: () => import(/* @vite-ignore */`@/views/${folderUrl}/GoodDetail.vue`),
     beforeEnter: (to, from ,next)=>{
       console.log(to, from ,next);
       next();

@@ -1,22 +1,20 @@
-import Mock from 'mockjs';
+import Mock from "mockjs";
 
 Mock.setup({
-    timeout: '2000',
-    debug: true
-})
+  timeout: "2000",
+  debug: true,
+});
 
 let configArray = [];
-const files = require.context('.', true, /\.js$/);
-
-files.keys().forEach(key => {
-    if (key === './index.js') return;
-    configArray = configArray.concat(files(key).default);
-
-})
-console.log(configArray);
-configArray.forEach(item => {
-    for(let [path, target] of Object.entries(item)) {
-        let protocol = path.split('|');
+const files = import.meta.glob("./*.js");
+for (const path in files) {
+  files[path]().then((mod) => {
+    configArray = configArray.concat(mod.default);
+    [...mod.default].forEach((item) => {
+      for (let [path, target] of Object.entries(item)) {
+        let protocol = path.split("|");
         Mock.mock(protocol[1], protocol[0], target);
-    }
-})
+      }
+    });
+  });
+}
