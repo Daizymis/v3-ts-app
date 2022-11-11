@@ -4,6 +4,7 @@ body,html {
     height: 100%;
     width: 100%;
 }
+
 /* mixin start */
 @mixin noScroll {
     &::-webkit-scrollbar {
@@ -13,9 +14,11 @@ body,html {
 @mixin pointer {
     cursor: pointer;
 }
-/* mixin start */
+/* mixin end */
 /* variables start */
 $white-color:#ffffff;
+$sideBarWidth: 200px;
+/* variables end */
 .mobile-layout {
     @include noScroll;
     height: 100%;
@@ -45,7 +48,7 @@ $white-color:#ffffff;
 
 
 @media screen and (max-width:750px) {
-    
+
 }
 @media (-webkit-min-device-pixel-ratio: 2){}
 @media (-webkit-min-device-pixel-ratio: 3){}

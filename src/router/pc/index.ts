@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "",
     name: "",
-    component: () => import(`@/views/pc/LayoutView.vue`),
+    component: () => import(`@/views/pc/layout/index.vue`),
     // redirect: '/home/order',
     children: [
       {
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/noticeManagement",
         name: "noticeManagement",
-        component: () => defineAsyncComponent(()=>import( /* @vite-ignore */ `@/views/pc/noticeManagementView.vue`)),
+        component:  defineAsyncComponent(()=>import( /* @vite-ignore */ `@/views/pc/noticeManagementView.vue`)),
         meta: {
           isShow: true,
           title: "noticeManagement",
