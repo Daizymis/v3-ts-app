@@ -15,9 +15,10 @@ import "@/assets/css/common.scss";
 import { importVant,importMinUI } from "@/utils/plugin";
 import "amfe-flexible";
 import 'min-comp/dist/style.css'
+// import minUi from 'min-comp';
 const app = createApp(App);
 importVant(app);
-importMinUI(app)
+// app.use(minUi);
 setupStore(app);
 
 app.use(Mock);

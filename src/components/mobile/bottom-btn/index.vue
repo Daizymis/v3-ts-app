@@ -40,7 +40,7 @@
   </div>
 </template>
 <script lang="ts">
-import {popover} from 'min-comp';
+// import {popover} from 'min-comp';
 export default {
   name: "bottom-btn",
 };

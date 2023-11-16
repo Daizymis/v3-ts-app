@@ -19,6 +19,7 @@
     "particles.vue3": "^2.2.3",
     "pinia": "^2.0.20",
     "prismjs": "^1.28.0",
+    "qiankun": "^2.8.4",
     "sass": "^1.54.5",
     "sass-loader": "^13.0.2",
     "three": "^0.143.0",

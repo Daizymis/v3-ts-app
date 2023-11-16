@@ -1,4 +1,5 @@
 <template>
+  <m-card shadow="hover"> Always </m-card>
   <van-nav-bar
     title="我的订单"
     left-arrow
@@ -25,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+  import {MinPlugin} from 'min-comp'
+  import 'min-comp/dist/style.css'
 import { orderInt } from "@/components/mobile/order/order.vue";
 import { getOrders } from "@/http/api";
 import { onBeforeMount, ref } from "vue";

@@ -19,7 +19,7 @@
       <el-button plain @click="reset(queryFormRef)">reset</el-button>
     </el-form-item>
   </el-form>
-  <el-table v-loading="loading" :data="showedOrderList" style="width: 100%">
+  <el-table id="myTable" v-loading="loading" :data="showedOrderList" style="width: 100%">
     <el-table-column fixed prop="orderNo" label="orderNo" width="150" />
     <el-table-column fixed prop="date" label="Date" width="150" />
     <el-table-column prop="name" label="Name" width="120" />
@@ -136,7 +136,7 @@ export default defineComponent({
       toDetail,
       currentPageChange,
       edit,
-      confirm,
+      confirm
     };
   },
 });

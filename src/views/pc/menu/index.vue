@@ -4,11 +4,11 @@
       <top-bar :permissions-list="permissionsList"></top-bar>
     </div>
     <div class="content-wrap">
-      <div v-if="isHomePage" class="menu-content">
-        <entrance :permissions-list="permissionsList" />
+      <div v-if="isHomePage"  class="menu-content">
+        <entrance/>
       </div>
       <div v-else class="view-content">
-        <router-view :key="$router.currentRoute.fullPath"></router-view>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -31,37 +31,11 @@ export default {
       permissionsList: {} //菜单权限
     };
   },
-  watch: {
-    $route: {
-      handler(to) {
-        if (to.path === '/home') {
-          this.isHomePage = true;
-          //重置列表页分页、查询信息
-          this.setPagination('reset');
-          this.setSearchParams('reset');
-          this.setListActiveIndex('reset');
-        } else {
-          this.isHomePage = false;
-        }
-      },
-      immediate: true
-    }
-  },
   created() {
     //获取菜单权限
     this.getSysMenusPermission();
   },
   methods: {
-    ...mapActions('listPageStatus', ['setPagination', 'setSearchParams', 'setListActiveIndex']),
-    getSysMenusPermission() {
-      communication({ url: 'getSysMenusPermission' })
-        .then(res => {
-          this.permissionsList = res.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
   }
 };
 </script>

@@ -1,6 +1,6 @@
 import {  RouteRecordRaw } from "vue-router";
 
-const folderUrl = 'mobile'
+const folderUrl = 'mobile';
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "",
     name: "",
-    component: () => import(/* @vite-ignore */`@/views/${folderUrl}/LayoutView.vue`),
+    component: () => import(`@/views/mobile/LayoutView.vue`),
     children: [
       {
         path: "/home",
@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
           icon: "List",
           footer: "home",
         },
-        component: () => import(/* @vite-ignore */`@/views/${folderUrl}/HomePageView.vue`),
+        component: () => import(`@/views/mobile/HomePageView.vue`),
       },
         {
           path: "order",
@@ -31,17 +31,7 @@ const routes: Array<RouteRecordRaw> = [
             title: "Orders",
             icon: "List",
           },
-          component: () => import(/* @vite-ignore */`@/views/${folderUrl}/OrderView.vue`),
-        },
-        {
-          path: "order",
-          name: "order",
-          meta: {
-            isShow: true,
-            title: "Orders",
-            icon: "List",
-          },
-          component: () => import(/* @vite-ignore */`@/views/${folderUrl}/OrderView.vue`),
+          component: () => import(/* @vite-ignore */`@/views/mobile/OrdersView.vue`),
         },
         {
           path: "good",
@@ -51,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
             title: "Goods",
             icon: "ShoppingBag",
           },
-          component: () => import(/* @vite-ignore */`@/views/${folderUrl}/GoodsView.vue`),
+          component: () => import(/* @vite-ignore */`@/views/mobile/GoodsView.vue`),
         },
       {
         path: "/category",
@@ -102,7 +92,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/orders",
     name: "orders",
-    component: () => import(/* @vite-ignore */`@/views/${folderUrl}/OrdersView.vue`),
+    component: () => import(/* @vite-ignore */`@/views/mobile/OrdersView.vue`),
   },
   {
     path: "/gooddetail/:id",

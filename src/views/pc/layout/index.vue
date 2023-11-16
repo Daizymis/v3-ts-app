@@ -25,6 +25,7 @@
         </el-header>
         <side-bar  class="sidebar-container" :isCollapse="isCollapse"></side-bar>
         <section class="main-container hasTagsView">
+            <div></div>
             <router-view></router-view>
         </section>
     </div>
